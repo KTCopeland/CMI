@@ -20,10 +20,8 @@
 
 
     <form id="form1" runat="server">
-        <br />
-        <br/>
-        <div style="align-items:center;" align="center">
-            <h1>UPLOAD YOUR RESUME</h1><br />
+        <div class="callout">
+            <h1>Upload Your Resume</h1>
             <p>It's free for job seekers and 100% confidential.  We will contact you before submitting you for a job.</p>
             <uc1:JobSeeker runat="server" ID="JobSeeker" />
         </div>

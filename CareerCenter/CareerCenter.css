@@ -1,4 +1,32 @@
-﻿
+﻿/* Fonts */
+@font-face {
+    font-family: 'SSP-Regular';
+    src: url('/Fonts/SourceSansPro-Regular.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'SSP-BOLD';
+    src: url('/Fonts/SourceSansPro-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'SSP-SEMI-BOLD';
+    src: url('/Fonts/SourceSansPro-Semibold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'SSP-Light';
+    src: url('/Fonts/SourceSansPro-Light.ttf');
+    font-weight: 100;
+}
+
+body {
+    font-family: 'SSP-Regular';
+}
+
 /* Page Specific*/
 #instructionText {
 }
@@ -236,19 +264,17 @@ hr {
 }
 
 .fileName {
-    width: 80%;
-}
-
-.fileReset {
-    width: 14.5%;
+    width: 70%;
 }
 
 .submitButton {
-    width: 200px;
-    height: 50px;
+    padding: .5em 1.5em;
+    text-transform: uppercase;
     color: #ffffff;
     background-color: #428BCA;
     border-style: none;
+    border-radius: 0;
+    font: 16px/1.6 'SSP-BOLD';
     font-weight: bold;
 }
 
@@ -258,4 +284,29 @@ hr {
 
 .redIndicator {
     color: red;
+}
+
+/* Sidebar Call-outs */
+.callout {
+    padding: 0 20px;
+}
+
+.callout h1 {
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #5e5e5e;
+}
+
+.callout input[type=text] {
+    padding: .25em .5em;
+}
+
+.callout input[type=button],
+.callout button {
+    padding: .25em 1em;
+    color: #ffffff;
+    background-color: #555;
+    border-style: none;
+    border-radius: 0;
+    font: 14px/1.6 'SSP-Regular';
 }

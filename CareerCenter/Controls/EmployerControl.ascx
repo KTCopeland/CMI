@@ -5,7 +5,7 @@
     <thead>
         <tr>
             <td class='controlCell'>
-                <span class="redIndi">*</span>
+                <span class="redIndicator">*</span>
                 <asp:TextBox runat="server" ID="txtName" class='controlItem' placeholder="Your Name"></asp:TextBox>
 
                 <asp:RequiredFieldValidator ID="rfvtxtName" runat="server" ControlToValidate="txtName" CssClass="required" Display="Dynamic" ErrorMessage="Please enter Your Name."></asp:RequiredFieldValidator>
@@ -14,14 +14,14 @@
         </tr>
         <tr>
             <td class='controlCell'>
-                <span class="redIndi">*</span>
+                <span class="redIndicator">*</span>
                 <asp:TextBox runat="server" ID="txtCompany" class='controlItem' placeholder="Company"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtCompany" runat="server" ControlToValidate="txtCompany" CssClass="required" Display="Dynamic" ErrorMessage="Please enter Company."></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
             <td class='controlCell'>
-                <span class="redIndi">*</span>
+                <span class="redIndicator">*</span>
                 <asp:TextBox runat="server" ID="txtEmail" class='controlItem' placeholder="E-mail"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ID="rfvtxtEmail" ControlToValidate="txtEmail" CssClass="required" Display="Dynamic" ErrorMessage="Please enter Email."></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td class='controlCell'>
-                <span class="redIndi">*</span>
+                <span class="redIndicator">*</span>
                 <asp:TextBox runat="server" ID="txtPhone" class='controlItem' placeholder="Phone Number"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ID="rfvtxtPhone" ControlToValidate="txtPhone" CssClass="required" Display="Dynamic" ErrorMessage="Please enter Phone."></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revtxtPhone"
@@ -46,7 +46,7 @@
         </tr>
         <tr>
             <td class='controlCell'>
-                <span class="redIndi">*</span>
+                <span class="redIndicator">*</span>
                 <asp:TextBox runat="server" ID="txtJobTitle" class='controlItem' placeholder="Job To Fill"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ID="rfvtxtJobtitle" Display="Dynamic" CssClass="required" ControlToValidate="txtJobTitle" ErrorMessage="Please enter Job Title."></asp:RequiredFieldValidator>
             </td>
