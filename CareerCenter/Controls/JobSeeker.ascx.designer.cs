@@ -13,6 +13,15 @@ namespace CareerCenter.Controls {
     public partial class JobSeeker {
         
         /// <summary>
+        /// divEntry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEntry;
+        
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -101,5 +110,14 @@ namespace CareerCenter.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpload;
+        
+        /// <summary>
+        /// divSubmitted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSubmitted;
     }
 }

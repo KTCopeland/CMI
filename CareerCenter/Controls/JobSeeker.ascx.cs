@@ -45,7 +45,8 @@ namespace CareerCenter.Controls
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            divEntry.Visible = true;
+            divSubmitted.Visible = false;
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -89,6 +90,9 @@ namespace CareerCenter.Controls
                     
 
                     fluResume.SaveAs(fileStorePath);
+
+                    divEntry.Visible = false;
+                    divSubmitted.Visible = true;
 
                 }
                 catch (Exception fileException)

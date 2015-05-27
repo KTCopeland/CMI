@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobSeeker.ascx.cs" Inherits="CareerCenter.Controls.JobSeeker" %>
-
-<table class='controlTable'>
+<div id ='divEntry' runat ="server">
+<table class='controlTable' >
     <thead>
         <tr>
             <td class='controlCell'>
@@ -50,6 +50,15 @@
         </tr>
     </thead>
 </table>
+    </div>
+<div id="divSubmitted" runat="server">
+
+    Thanks for your interest.  
+    <br />
+    Your information has been added and we will reach out to you with opportunities that match your qualifications.
+
+</div>
+
 <script type="text/javascript">
 
     function resetFileUpload(){
