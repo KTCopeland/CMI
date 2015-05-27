@@ -11,7 +11,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href="../CareerCenter.css" rel='stylesheet' type='text/css' />
 </head>
-<body>
+<body onload="getResults()">
     <form id="form1" runat="server">
         <p id='instructionText'>Enter your search criteria below to browse open jobs.</p>
         <div id="QueryEntry" style="background-color: rgba(225, 225, 200, 0.33);">
@@ -71,7 +71,7 @@
             }
 
             function navigate(index) {
-                var pageItems = 6 //Set the number of items on each page
+                var pageItems = 5 //Set the number of items on each page
                 var numItems = $('.SummaryWrapper').length;
 
                 if (index < 1 || index > numItems) {
