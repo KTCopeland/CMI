@@ -16,7 +16,7 @@
 <body>
 
     <form id="form1" runat="server">
-        <div style="align-items: center;" align="center">
+        <div class="callout">
             <h1>Find Talent</h1>
                 <uc1:EmployerControl ID="EmployerControl1" runat="server" />
         </div>

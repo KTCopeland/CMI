@@ -34,7 +34,7 @@
             <td class='controlCell'>
                 <span class="redIndicator">*</span>
                 <asp:FileUpload ID="fluResume" runat="server" Style="display: none;" onchange="fileChanged(this)" />
-                <input id="txtFileName" type="text" class='fileName' readonly placeholder="Click to add resume (.doc, .docx, .pdf, .txt)" onclick="document.getElementById('<%= fluResume.ClientID %>').click(); return false;" />
+                <input id="txtFileName" type="text" class='fileName' readonly placeholder="Add resume (.doc, .docx, .pdf, .txt)" onclick="document.getElementById('<%= fluResume.ClientID %>').click(); return false;" />
                 <input id="FileUploadReset" type="button" class='fileReset' value="Clear" onclick="resetFileUpload()" /><br />
                 <asp:RegularExpressionValidator ID="revFileUpload"
                     runat="server" ErrorMessage="Use an approved file type (.doc, .docx, .pdf, .txt)" Display="Dynamic"
@@ -45,7 +45,7 @@
 
         <tr>
             <td style="text-align: center">
-                <asp:Button runat="server" ID="btnUpload" class='submitButton' UseSubmitBehavior="True" Text="SUBMIT" OnClick="btnUpload_Click"  />
+                <asp:Button runat="server" ID="btnUpload" class='submitButton' UseSubmitBehavior="True" Text="Upload" OnClick="btnUpload_Click"  />
             </td>
         </tr>
     </thead>

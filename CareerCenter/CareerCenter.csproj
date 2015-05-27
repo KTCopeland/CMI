@@ -421,6 +421,19 @@
     <Content Include="js\ckeditor\samples\assets\posteddata.php" />
     <Content Include="js\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="js\ckeditor\samples\sample_posteddata.php" />
+    <Content Include=".editorconfig" />
+    <Content Include="Fonts\SourceSansPro-Black.ttf" />
+    <Content Include="Fonts\SourceSansPro-BlackItalic.ttf" />
+    <Content Include="Fonts\SourceSansPro-Bold.ttf" />
+    <Content Include="Fonts\SourceSansPro-BoldItalic.ttf" />
+    <Content Include="Fonts\SourceSansPro-ExtraLight.ttf" />
+    <Content Include="Fonts\SourceSansPro-ExtraLightItalic.ttf" />
+    <Content Include="Fonts\SourceSansPro-Italic.ttf" />
+    <Content Include="Fonts\SourceSansPro-Light.ttf" />
+    <Content Include="Fonts\SourceSansPro-LightItalic.ttf" />
+    <Content Include="Fonts\SourceSansPro-Regular.ttf" />
+    <Content Include="Fonts\SourceSansPro-Semibold.ttf" />
+    <Content Include="Fonts\SourceSansPro-SemiboldItalic.ttf" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
