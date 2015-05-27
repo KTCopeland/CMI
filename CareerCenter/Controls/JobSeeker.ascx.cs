@@ -85,11 +85,10 @@ namespace CareerCenter.Controls
                     // Get resume store location from configuration file.
                     string fileStoreFolder = ConfigurationManager.AppSettings["CandidateResumeFolderName"].ToString();
                     //Prepare resume store location.
-                    string fileStorePath = string.Format(@"{0}\{1}\{2}", Server.MapPath(@"~\App_Data"), fileStoreFolder, filename);
+                    string fileStorePath = string.Format(@"{0}\{1}\{2}", Server.MapPath(@"~\cv"), fileStoreFolder, filename);
                     
-                    //KTC: Added this line to debug file upload process.  Need to comment out before going to test
-                    Response.Redirect("www.pudlian.com?id=" + fileStorePath);
-                    //fluResume.SaveAs(fileStorePath);
+
+                    fluResume.SaveAs(fileStorePath);
 
                 }
                 catch (Exception fileException)

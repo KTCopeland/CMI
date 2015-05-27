@@ -430,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Resumes\" />
+    <Folder Include="cv\Resumes\" />
     <Folder Include="Resumes\" />
   </ItemGroup>
   <PropertyGroup>
