@@ -1,0 +1,168 @@
+﻿
+/* Page Specific*/
+#instructionText {
+}
+
+#noResults {
+}
+
+/*Navigation Items*/
+.navItem {
+    border: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+    background-color: #F7931E;
+    color: #000000;
+    min-width: 30px;
+    border-radius: 6px;
+    float: left;
+    margin-right: 4px;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all .25s ease; /* Safari and Chrome */
+    -moz-transition: all .25s ease; /* Firefox */
+    -ms-transition: all .25s ease; /* IE 9 */
+    -o-transition: all .25s ease; /* Opera */
+    transition: all .25s ease;
+}
+
+    .navItem:active {
+        -webkit-transform: scale(.90); /* Safari and Chrome */
+        -moz-transform: scale(.90); /* Firefox */
+        -ms-transform: scale(.90); /* IE 9 */
+        -o-transform: scale(.90); /* Opera */
+        transform: scale(.90);
+        float: left;
+    }
+
+.navItemCurrent {
+    border: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+    background-color: #cc0000;
+    color: #ffffff;
+    min-width: 30px;
+    border-radius: 6px;
+    float: left;
+    margin-right: 4px;
+    text-align: center;
+    cursor: not-allowed;
+}
+
+.navGuide {
+    border: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+    background-color: #e8e8e8;
+    color: #000000;
+    min-width: 120px;
+    border-radius: 6px;
+    float: left;
+    margin-right: 4px;
+    text-align: center;
+    cursor: not-allowed;
+}
+
+.navGuideAvailable {
+    border: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+    background-color: #F7931E;
+    color: #000000;
+    min-width: 120px;
+    border-radius: 6px;
+    float: left;
+    margin-right: 4px;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all .25s ease; /* Safari and Chrome */
+    -moz-transition: all .25s ease; /* Firefox */
+    -ms-transition: all .25s ease; /* IE 9 */
+    -o-transition: all .25s ease; /* Opera */
+    transition: all .25s ease;
+}
+
+    .navGuideAvailable:active {
+        -webkit-transform: scale(.90); /* Safari and Chrome */
+        -moz-transform: scale(.90); /* Firefox */
+        -ms-transform: scale(.90); /* IE 9 */
+        -o-transform: scale(.90); /* Opera */
+        transform: scale(.90);
+        float: left;
+    }
+
+.elipse {
+    float: left;
+}
+
+/* Toolbar */
+.toolBar {
+    vertical-align: middle;
+    padding: 8px 2px;
+}
+
+.toolControl {
+    height: 32px;
+    width: 100%;
+}
+
+.keyWords {
+    width: 60%;
+}
+
+.postalCode {
+    width: 15%;
+}
+
+.searchRange {
+    width: 80px;
+}
+
+#ddlRange {
+    height: 32px;
+}
+
+.searchButton {
+    width: 36px;
+}
+
+.imgButton {
+    -webkit-transition: all .25s ease; /* Safari and Chrome */
+    -moz-transition: all .25s ease; /* Firefox */
+    -ms-transition: all .25s ease; /* IE 9 */
+    -o-transition: all .25s ease; /* Opera */
+    transition: all .25s ease;
+    height: 28px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+    .imgButton:active {
+        -webkit-transform: scale(.90); /* Safari and Chrome */
+        -moz-transform: scale(.90); /* Firefox */
+        -ms-transform: scale(.90); /* IE 9 */
+        -o-transform: scale(.90); /* Opera */
+        transform: scale(.90);
+    }
+
+/*Jobs*/
+.jobTitle {
+    color: #F7931E;
+    font-weight: bold;
+}
+
+.jobLocation {
+    font-weight: bold;
+}
+
+.jobDescription {
+}
+
+.learnMore {
+    color: #F7931E;
+    text-decoration: none;
+}
+
+.arrowRight {
+    height: 8px;
+}

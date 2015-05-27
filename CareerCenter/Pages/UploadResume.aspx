@@ -1,0 +1,37 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadResume.aspx.cs" Inherits="CareerCenter.Pages.UploadResume" %>
+
+<%@ Register Src="~/Controls/JobSeeker.ascx" TagPrefix="uc1" TagName="JobSeeker" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Find Talent</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <asp:PlaceHolder ID="phStyle" runat="server"></asp:PlaceHolder>
+
+</head>
+<body>
+
+
+
+    <form id="form1" runat="server">
+        <br />
+        <br/>
+        <div style="align-items:center;" align="center">
+            <h1>UPLOAD YOUR RESUME</h1><br />
+            <p>It's free for job seekers and 100% confidential.  We will contact you before submitting you for a job.</p>
+            <uc1:JobSeeker runat="server" ID="JobSeeker" />
+        </div>
+    </form>
+
+
+
+
+
+</body>
+</html>
