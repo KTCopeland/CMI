@@ -60,6 +60,7 @@
     <Content Include="CareerCenter.css" />
     <Content Include="Controls\EmployerControl.ascx" />
     <Content Include="Controls\JobSeeker.ascx" />
+    <Content Include="cv\Resumes\Sample.txt" />
     <Content Include="Global.asax" />
     <Content Include="Images\arrow-right.png" />
     <Content Include="Images\ExperisLogo.png" />
@@ -430,7 +431,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Resumes\" />
-    <Folder Include="cv\Resumes\" />
     <Folder Include="Resumes\" />
   </ItemGroup>
   <PropertyGroup>
