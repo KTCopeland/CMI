@@ -53,9 +53,9 @@
     </div>
 <div id="divSubmitted" runat="server">
 
-    Thanks for your interest.  
+    Thanks for submitting your resume! 
     <br />
-    Your information has been added and we will reach out to you with opportunities that match your qualifications.
+    When a job opens up that’s right for you, we’ll contact you right away with details. 
 
 </div>
 
