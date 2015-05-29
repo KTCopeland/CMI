@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+<script src ="/js/ga.js"></script>
 <link href="../CareerCenter.css" rel='stylesheet' type='text/css' />
 </head>
 <body>

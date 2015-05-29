@@ -113,7 +113,9 @@ namespace CareerCenter
                 {
                     for (int li_Loop = 0; li_Loop < lo_Jobs.Tables[0].Rows.Count; li_Loop++)
                     {
-                        lsb_Return.Append("<li><a class='learnMore' href='" + @"/pages/ShowJob.aspx?id=" + lo_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
+                        //For now, we will send users to the same place every time: http://contentmarketinginstitute.careers/find-a-job/
+                        lsb_Return.Append("<li><a class='learnMore' href='" + @"http://contentmarketinginstitute.careers/find-a-job/'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
+                        //lsb_Return.Append("<li><a class='learnMore' href='" + @"/pages/ShowJob.aspx?id=" + lo_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
                     }
 
                 }

@@ -11,6 +11,7 @@
     <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
     <!-- ckeditor -->
     <script src="/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src ="/js/ga.js"></script>
     <style>
         table {
             padding: 6px;

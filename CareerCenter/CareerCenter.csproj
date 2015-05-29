@@ -302,6 +302,7 @@
     <Content Include="js\ckeditor\skins\office2013\images\lock.png" />
     <Content Include="js\ckeditor\skins\office2013\images\refresh.png" />
     <Content Include="js\ckeditor\styles.js" />
+    <Content Include="js\ga.js" />
     <Content Include="js\jquery-ui-1.10.3.js" />
     <Content Include="js\jquery-ui-1.10.3.min.js" />
     <Content Include="Pages\EditJob.aspx" />
