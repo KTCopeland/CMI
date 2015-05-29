@@ -21,7 +21,7 @@
 
     <form id="form1" runat="server">
         <div class="callout">
-            <h1>Upload Your Resume</h1>
+            <h1>Join Our Talent Pool</h1>
             <p>It's free for job seekers and 100% confidential.  We will contact you before submitting you for a job.</p>
             <uc1:JobSeeker runat="server" ID="JobSeeker" />
         </div>
