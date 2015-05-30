@@ -105,7 +105,7 @@ namespace CareerCenter
             string ls_SQL = "select top 5 * from vw_job_active";
             DataSet lo_Jobs = new DataSet();
 
-            lsb_Return.Append("Open Jobs<br/>");
+            //lsb_Return.Append("Open Jobs<br/>");
             lsb_Return.Append("<ul>");
             try
             {
