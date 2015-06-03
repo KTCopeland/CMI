@@ -21,28 +21,41 @@ namespace CareerCenter
 
         public Query()
         {
-            LoadJobs();
+            
         }
-
-        public Query(string as_Parameters)
-        {
-            LoadJobs();
-            SearchKeywords(as_Parameters);
-        }
-
 
         bool LoadJobs()
         {
             io_Jobs = new DataSet();
-            return DataHandler.GetDatasetFromQuery(ref io_Jobs,"Select * from vw_job_active");
+            return DataHandler.GetDatasetFromQuery(ref io_Jobs,"Select *, -1 distance from vw_job_active");
+        }
+
+        bool LoadJobs(string as_PostalCode)
+        {
+            io_Jobs = new DataSet();
+            return DataHandler.GetDatasetFromQuery(ref io_Jobs, "Select * from vw_job_distance where postal_code='" + as_PostalCode + "' order by distance asc");
         }
 
         public int SearchKeywords(string as_Parameters)
+        {
+            return SearchKeywords(as_Parameters, "");
+        }
+
+        public int SearchKeywords(string as_Parameters, string as_PostalCode)
         {
             int li_Return = 0;
 
             try
             {
+                if (as_PostalCode=="")
+                {
+                    LoadJobs();
+                }
+                else
+                {
+                    LoadJobs(as_PostalCode);
+                }
+
                 string ls_Compare = "";
                 int li_Counter = 0;
                 int li_MaxLength = int.Parse(DataHandler.GetSetting("job_summary_length"));
@@ -72,8 +85,57 @@ namespace CareerCenter
 
                             lsb_JobSummary.Clear();
                             lsb_JobSummary.Append("<div id='SummaryWrapper_" + li_Counter.ToString() + "' class ='SummaryWrapper'>");
-                            lsb_JobSummary.Append("<p><span class ='jobTitle' ><a href='" + @"/pages/ShowJob.aspx?id=" + io_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() +"'>" + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString()) + "</a></span><br/>");
-                            lsb_JobSummary.Append("<span class='jobLocation'><b>" + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString()) + ", " + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString()) + "</b></span><br/>");
+                            lsb_JobSummary.Append("<hr/>");
+                            lsb_JobSummary.Append("<div class ='jobTitle' ><a href='" + @"/pages/ShowJob.aspx?id=" + io_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() +"'>" + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString()) + "</a></div>");
+                            //KTC: 06/02/2015: Add indicator to show job term.  Valid values are {C,T,H} for {Contract, Contract to Hire, and Direct Hire} respectively
+                            switch (io_Jobs.Tables[0].Rows[li_Loop]["job_term"].ToString().ToUpper())
+                            {
+                                case "C":
+                                    {
+                                        lsb_JobSummary.Append("<div class='jobTerm termContract' title='Contract Position'>C</div>");
+                                        break;
+                                    }
+                                case "T":
+                                    {
+                                        lsb_JobSummary.Append("<div class='jobTerm termCTH' title='Contract to Hire Position'>T</div>");
+                                        break;
+                                    }
+                                case "H":
+                                    {
+                                        lsb_JobSummary.Append("<div class='jobTerm termHire' title='Direct Hire Position'>H</div>");
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        //We have a value that doesn't meet one of the criteria.  Leave blank for now.
+                                        break;
+                                    }
+                            }
+                            lsb_JobSummary.Append("<div class='dummy'></div>");
+                            lsb_JobSummary.Append("<div class='jobLocation'><b>" + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString()) + ", " + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString()) + "</b></div>");
+                            
+                            //KTC:06/02/2015: Add indicator if this position can be worked remotely
+                            if (io_Jobs.Tables[0].Rows[li_Loop]["job_remote"].ToString() == "1" || io_Jobs.Tables[0].Rows[li_Loop]["job_remote"].ToString().ToUpper() == "TRUE")
+                            {
+                                lsb_JobSummary.Append("<div class='remotePosition' title='Remote work permitted'>Remote</div>");
+                            }
+
+                            //KTC:06/03/2015 - Show distance if a postal code was provided
+                            int li_Distance = int.Parse(io_Jobs.Tables[0].Rows[li_Loop]["distance"].ToString());
+                            if (li_Distance >= 0)
+                            {
+                                if (li_Distance != 1)
+                                {
+                                    lsb_JobSummary.Append("<div class='jobDistance' >" + string.Format("{0:n0}", li_Distance) + " miles</div>");
+                                }
+                                else
+                                {
+                                    lsb_JobSummary.Append("<div class='jobDistance' >1 mile</div>");
+                                }
+                            }
+                            
+                            lsb_JobSummary.Append("<div class='dummy'></div>");
+
                             if (io_Jobs.Tables[0].Rows[li_Loop]["job_description"].ToString().Length > li_MaxLength)
                             {
                                 lsb_JobSummary.Append("<span class='jobDescription'>" + io_Jobs.Tables[0].Rows[li_Loop]["job_description"].ToString().Substring(0,li_MaxLength) + "...&nbsp;"); //Note: This should already be html safe
@@ -83,7 +145,7 @@ namespace CareerCenter
                                 lsb_JobSummary.Append("<span class='jobDescription'>" + io_Jobs.Tables[0].Rows[li_Loop]["job_description"].ToString() + "&nbsp;");
                             }
 
-                            lsb_JobSummary.Append("<a class='learnMore' href='" + @"/pages/ShowJob.aspx?id=" + io_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "'> Learn More <img class='arrowRight' src='/images/arrow-right.png'/></a></span></p>");
+                            lsb_JobSummary.Append("<a class='learnMore' href='" + @"/pages/ShowJob.aspx?id=" + io_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "'> Learn More <img class='arrowRight' src='/images/arrow-right.png'/></a></span>");
                             lsb_JobSummary.Append("</div>");
                             io_Results.Add(li_Counter, lsb_JobSummary.ToString());
                         }

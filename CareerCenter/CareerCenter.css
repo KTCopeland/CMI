@@ -29,6 +29,7 @@ body {
 
 /* Page Specific*/
 #instructionText {
+
 }
 
 #noResults {
@@ -176,14 +177,64 @@ body {
 /*Jobs*/
 .jobTitle {
     color: #F7931E;
+    font-size:24px;
     font-weight: bold;
+    float:left;
 }
 
 .jobLocation {
     font-weight: bold;
+    float:left;
 }
 
 .jobDescription {
+
+}
+
+.dummy{
+    clear:both;
+}
+
+.jobDistance{
+        float: left;
+        margin-left: 3px;
+        margin-top: 2px;
+        padding:1px;
+}
+
+.remotePosition{
+    border-radius: 10%;
+    background-color: #F7931E;
+    color:#ffffff;
+    margin-left: 5px;
+    margin-top: 2px;
+    padding:0px 3px;
+    float: left;
+}
+
+.jobTerm{
+    border-radius: 10%;
+    float:left;
+    padding: 0px 5px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-left:5px;
+    margin-top: 6px;
+    text-align:center;
+
+
+}
+
+.termContract{
+    background-color: #205079;
+}
+
+.termCTH{
+    background-color: #4d4102;
+}
+
+.termHire{
+    background-color: #094812;
 }
 
 .learnMore {
@@ -211,6 +262,7 @@ body {
 .jobHeader {
     font-size: 24px;
     color: #F7931E;
+    float: left;
 }
 
 .jobLocation {
@@ -291,22 +343,22 @@ hr {
     padding: 0 20px;
 }
 
-.callout h1 {
-    text-transform: uppercase;
-    font-size: 25px;
-    color: #5e5e5e;
-}
+    .callout h1 {
+        text-transform: uppercase;
+        font-size: 25px;
+        color: #5e5e5e;
+    }
 
-.callout input[type=text] {
-    padding: .25em .5em;
-}
+    .callout input[type=text] {
+        padding: .25em .5em;
+    }
 
-.callout input[type=button],
-.callout button {
-    padding: .25em 1em;
-    color: #ffffff;
-    background-color: #555;
-    border-style: none;
-    border-radius: 0;
-    font: 14px/1.6 'SSP-Regular';
-}
+    .callout input[type=button],
+    .callout button {
+        padding: .25em 1em;
+        color: #ffffff;
+        background-color: #555;
+        border-style: none;
+        border-radius: 0;
+        font: 14px/1.6 'SSP-Regular';
+    }

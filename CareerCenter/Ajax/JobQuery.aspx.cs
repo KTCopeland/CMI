@@ -13,14 +13,15 @@ namespace CareerCenter.Ajax
         {
             string ls_Keywords = "";
             string ls_PostalCode = "";
-            string ls_Range = "";
+            //string ls_Range = "";
 
             ls_Keywords = Request.Params["keywords"].ToString();
-            ls_PostalCode = Request.Params["keywords"].ToString();
-            ls_Range = Request.Params["keywords"].ToString();
+            ls_PostalCode = Request.Params["postalcode"].ToString();
+            //KTC:06/02/2015: Range functionality is no longer required
+            //ls_Range = Request.Params["range"].ToString();
 
             Query lo_Query = new Query();
-            lo_Query.SearchKeywords(ls_Keywords);
+            lo_Query.SearchKeywords(ls_Keywords, ls_PostalCode);
             for (int li_Loop = 1; li_Loop<=lo_Query.Results.Count;li_Loop++)
             {
                 Results.Controls.Add(new LiteralControl(lo_Query.Results[li_Loop]));

@@ -24,7 +24,7 @@
                     <td class='toolBar postalCode'>
                         <asp:TextBox ID="txtPostalCode" class='toolControl' runat="server" placeholder="Postal Code"></asp:TextBox>
                     </td>
-                    <td class='toolBar searchRange'>
+<%--                    <td class='toolBar searchRange'>
                         <select id="ddlRange">
                             <option value="Any">Any Distance</option>
                             <option value="Remote">Remote Only</option>
@@ -32,7 +32,7 @@
                             <option value="50">Within 50 Miles</option>
                             <option value="100">Within 100 Miles</option>
                         </select>
-                    </td>
+                    </td>--%>
                     <td class='toolBar searchButton'>
                         <img id="imgSearch" class="imgButton" src="/Images/SearchButton.png" onclick="getResults()" onmouseover="" />
                     </td>
@@ -208,9 +208,10 @@
             function getResults() {
                 var keywords = document.getElementById('<%=txtKeywords.ClientID%>').value;
                 var postalcode = encodeURIComponent(document.getElementById('<%=txtPostalCode.ClientID%>').value);
-                var range = encodeURIComponent(document.getElementById('ddlRange').value);
+                //KTC:06/02/2015 - Remove ability to choose range
+                var range = 0; //encodeURIComponent(document.getElementById('ddlRange').value);
 
-                //Add last chance verification here before doing the post stuff
+                //Last chance verification can happen here before doing the post stuff
 
 
 

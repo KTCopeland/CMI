@@ -20,6 +20,7 @@ namespace CareerCenter
         string is_Job_Territory = DataHandler.StringNull;
         string is_Job_Postal_Code = DataHandler.StringNull;
         string is_Job_Country = DataHandler.StringNull;
+        string is_Job_Term = DataHandler.StringNull;
         DateTime idt_Job_Active_Date = DataHandler.DateTimeNull;
         DateTime idt_Job_Inactive_Date = DataHandler.DateTimeNull;
         bool ib_Job_Remote = false; //default to not remote
@@ -79,14 +80,15 @@ namespace CareerCenter
             }
             set
             {
-                if (value.Length > 4000)
-                {
-                    is_Job_Description = value.Substring(0, 4000);
-                }
-                else
-                {
+                //KTC: 06/02/2015 - Changed this to not restrict size.   Database can support text up to 1Gb now.
+                //if (value.Length > 4000)
+                //{
+                //    is_Job_Description = value.Substring(0, 4000);
+                //}
+                //else
+                //{
                     is_Job_Description = value;
-                }
+                //}
             }
         }
 
@@ -166,6 +168,25 @@ namespace CareerCenter
             }
         }
 
+        public string Job_Term
+        {
+            get
+            {
+                return is_Job_Term;
+            }
+            set
+            {
+                if (value.Length > 10)
+                {
+                    is_Job_Term = value.Substring(0, 10);
+                }
+                else
+                {
+                    is_Job_Term = value;
+                }
+            }
+        }
+
         public DateTime Job_Active_Date
         {
             get
@@ -239,6 +260,7 @@ namespace CareerCenter
                     DataHandler.SetVal(ref lo_Command, "@job_territory", is_Job_Territory);
                     DataHandler.SetVal(ref lo_Command, "@job_postal_code", is_Job_Postal_Code);
                     DataHandler.SetVal(ref lo_Command, "@job_country", is_Job_Country);
+                    DataHandler.SetVal(ref lo_Command, "@job_term", is_Job_Term);
                     DataHandler.SetVal(ref lo_Command, "@job_active_date", idt_Job_Active_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_inactive_date", idt_Job_Inactive_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_remote", ib_Job_Remote);
@@ -293,6 +315,7 @@ namespace CareerCenter
                     DataHandler.GetVal(ref this.is_Job_Territory, lo_Data.Tables[0].Rows[0]["job_territory"]);
                     DataHandler.GetVal(ref this.is_Job_Postal_Code, lo_Data.Tables[0].Rows[0]["job_postal_code"]);
                     DataHandler.GetVal(ref this.is_Job_Country, lo_Data.Tables[0].Rows[0]["job_country"]);
+                    DataHandler.GetVal(ref this.is_Job_Term, lo_Data.Tables[0].Rows[0]["job_term"]);
                     DataHandler.GetVal(ref this.idt_Job_Active_Date, lo_Data.Tables[0].Rows[0]["job_active_date"]);
                     DataHandler.GetVal(ref this.idt_Job_Inactive_Date, lo_Data.Tables[0].Rows[0]["job_inactive_date"]);
                     DataHandler.GetVal(ref this.ib_Job_Remote, lo_Data.Tables[0].Rows[0]["job_remote"]);
@@ -335,6 +358,7 @@ namespace CareerCenter
                     DataHandler.SetVal(ref lo_Command, "@job_territory", is_Job_Territory);
                     DataHandler.SetVal(ref lo_Command, "@job_postal_code", is_Job_Postal_Code);
                     DataHandler.SetVal(ref lo_Command, "@job_country", is_Job_Country);
+                    DataHandler.SetVal(ref lo_Command, "@job_country", is_Job_Term);
                     DataHandler.SetVal(ref lo_Command, "@job_active_date", idt_Job_Active_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_inactive_date", idt_Job_Inactive_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_remote", ib_Job_Remote);
@@ -421,7 +445,42 @@ namespace CareerCenter
             {
                 lsb_Return.Append("<div class='jobWrapper'>");
                 lsb_Return.Append("<div class='jobHeader'>" + WebUtility.HtmlEncode(this.Job_Title) + "</div>");
+                //KTC: 06/02/2015: Add indicator to show job term.  Valid values are {C,T,H} for {Contract, Contract to Hire, and Direct Hire} respectively
+                switch(this.Job_Term.ToUpper())
+                {
+                    case "C":
+                        {
+                            lsb_Return.Append("<div class='jobTerm termContract' title='Contract Position'>C</div>");
+                            break;
+                        }
+                    case "T":
+                        {
+                            lsb_Return.Append("<div class='jobTerm termCTH' title='Contract to Hire Position'>T</div>");
+                            break;
+                        }
+                    case "H":
+                        {
+                            lsb_Return.Append("<div class='jobTerm termHire' title='Direct Hire Position'>H</div>");
+                            break;
+                        }
+                    default:
+                        {
+                            //We have a value that doesn't meet one of the criteria.  Leave blank for now.
+                            break;
+                        }
+                }
+
+                lsb_Return.Append("<div class='dummy'></div>");
+
                 lsb_Return.Append("<div class='jobLocation'>" + WebUtility.HtmlEncode(this.Job_City + ", " + this.Job_Territory) + "</div>");
+                //KTC:06/02/2015: Add indicator if this position can be worked remotely
+                if (this.Job_Remote)
+                {
+                    lsb_Return.Append("<div class='remotePosition' title='Remote work permitted'>Remote</div>");
+                }
+
+                lsb_Return.Append("<div class='dummy'></div>");
+
                 lsb_Return.Append("<div class='jobDetail'>" + this.Job_Description + "</div>");
                 lsb_Return.Append("</div>");
 
