@@ -160,22 +160,22 @@ body {
 }
 
 .imgButton {
-    -webkit-transition: all 1.25s ease; /* Safari and Chrome */
-    -moz-transition: all 1.25s ease; /* Firefox */
-    -ms-transition: all 1.25s ease; /* IE 9 */
-    -o-transition: all 1.25s ease; /* Opera */
-    transition: all 1.25s ease;
+    -webkit-transition: ease-out .25s ease; /* Safari and Chrome */
+    -moz-transition: ease-out .25s ease; /* Firefox */
+    -ms-transition: ease-out .25s ease; /* IE 9 */
+    -o-transition: ease-out .25s ease; /* Opera */
+    transition: ease-out .25s ease;
     height: 28px;
     vertical-align: middle;
     cursor: pointer;
 }
 
     .imgButton:active {
-        -webkit-transform: scale(.90); /* Safari and Chrome */
-        -moz-transform: scale(.90); /* Firefox */
-        -ms-transform: scale(.90); /* IE 9 */
-        -o-transform: scale(.90); /* Opera */
-        transform: scale(.90);
+        -webkit-transform: scale(.80); /* Safari and Chrome */
+        -moz-transform: scale(.80); /* Firefox */
+        -ms-transform: scale(.80); /* IE 9 */
+        -o-transform: scale(.80); /* Opera */
+        transform: scale(.80);
     }
 
 /*Jobs*/

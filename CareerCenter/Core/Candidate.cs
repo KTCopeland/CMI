@@ -204,73 +204,6 @@ namespace CareerCenter
                     else
                     {
                         ii_Candidate_ID = li_ID;
-
-                        //Resume Submission Response
-                        if (DataHandler.GetSetting("candidate_response_enabled").ToUpper() == "TRUE" && this.Job_ID <= 0)
-                        {
-                            string[] ls_Name = this.Candidate_Name.Split(' ');
-                            string ls_Body =  DataHandler.GetSetting("candidate_response_text").Replace("{NAME}",ls_Name[0]).Replace("{EMAIL_HEADER}",DataHandler.GetSetting("email_header"));
-                            DataHandler.SendEmail(this.Candidate_Email, "Thank you for your submission", ls_Body);
-                        }
-
-                        //Resume Submission Notification
-                        if (DataHandler.GetSetting("candidate_notification_enabled").ToUpper() == "TRUE" && this.Job_ID <= 0)
-                        {
-                            StringBuilder lo_CandidateInfo = new StringBuilder();
-                            lo_CandidateInfo.Append("Name: " + this.is_Candidate_Name + "<br/>");
-                            lo_CandidateInfo.Append("Email: " + this.is_Candidate_Email + "<br/>");
-                            lo_CandidateInfo.Append("Phone: " + this.is_Candidate_Phone + "<br/>");
-
-                            string ls_Body = DataHandler.GetSetting("candidate_notification_text").Replace("{CANDIDATE_DETAIL}",lo_CandidateInfo.ToString()).Replace("{EMAIL_HEADER}",DataHandler.GetSetting("email_header"));
-                            DataHandler.SendEmail(DataHandler.GetSetting("candidate_notification_recipients"), "New Resume Submission", ls_Body);
-                        }
-
-                        //Job Submission Response
-                        if (DataHandler.GetSetting("job_response_enabled").ToUpper() == "TRUE" && this.Job_ID > 0)
-                        {
-                            string[] ls_Name = this.Candidate_Name.Split(' ');
-                            Job lo_Job = new Job();
-                            if (lo_Job.Retrieve(this.Job_ID))
-                            {
-                                string ls_Body = DataHandler.GetSetting("job_response_text").Replace("{NAME}", ls_Name[0]).Replace("{JOB_TITLE}",lo_Job.Job_Title).Replace("{EMAIL_HEADER}",DataHandler.GetSetting("email_header"));
-                                DataHandler.SendEmail(this.Candidate_Email, "Thank you for applying", ls_Body);
-                            }
-                        }
-
-                        //Job Submission Notification
-                        if (DataHandler.GetSetting("job_notification_enabled").ToUpper() == "TRUE" && this.Job_ID > 0)
-                        {
-                            Job lo_Job = new Job();
-                            if (lo_Job.Retrieve(this.Job_ID))
-                            {
-                                Employer lo_Employer = new Employer();
-
-                                StringBuilder lo_CandidateInfo = new StringBuilder();
-                                lo_CandidateInfo.Append("Name: " + this.is_Candidate_Name + "<br/>");
-                                lo_CandidateInfo.Append("Email: " + this.is_Candidate_Email + "<br/>");
-                                lo_CandidateInfo.Append("Phone: " + this.is_Candidate_Phone + "<br/>");
-
-                                StringBuilder lo_JobInfo = new StringBuilder();
-                                lo_JobInfo.Append("Job Title:" + lo_Job.Job_Title + "<br/>");
-                                lo_JobInfo.Append("Job_Location:" + lo_Job.Job_City + "," + lo_Job.Job_Territory + " " + lo_Job.Job_Postal_Code + " | " + lo_Job.Job_Country + "Remote Allowed: " );
-                                if(lo_Job.Job_Remote)
-                                {
-                                    lo_JobInfo.Append("Yes");
-                                }
-                                else
-                                {
-                                    lo_JobInfo.Append("No");
-                                }
-                                lo_JobInfo.Append("<br/>");
-                                lo_Employer.Retrieve(lo_Job.Employer_ID);
-                                lo_JobInfo.Append("Company: " + lo_Employer.Employer_Company_Name + "<br/>");
-                                lo_JobInfo.Append("Contact: " + lo_Employer.Employer_Contact_Name + ", " + lo_Employer.Employer_Contact_Title + "<br/>");
-                                lo_JobInfo.Append("Contact Info: " + lo_Employer.Employer_Contact_Email + " | " + lo_Employer.Employer_Contact_Phone + "<br/>");
-                                string ls_Body = DataHandler.GetSetting("job_notification_text").Replace("{CANDIDATE_DETAIL}", lo_CandidateInfo.ToString()).Replace("{JOB_DETAIL}",lo_JobInfo.ToString()).Replace("{EMAIL_HEADER}",DataHandler.GetSetting("email_header"));
-                                DataHandler.SendEmail(DataHandler.GetSetting("job_notification_recipients"), "New Job Submission", ls_Body);
-                            }
-                        }
-
                         lb_Return = true;
                     }
                 }
@@ -411,6 +344,95 @@ namespace CareerCenter
             catch (Exception ex)
             {
                 DataHandler.HandleError(ex);
+            }
+
+            return lb_Return;
+        }
+
+        public bool SendApplicantNotification()
+        {
+            bool lb_Return = false;
+
+            try
+            {
+
+
+
+                        //Resume Submission Response
+                        if (DataHandler.GetSetting("candidate_response_enabled").ToUpper() == "TRUE" && this.Job_ID <= 0)
+                        {
+                            string[] ls_Name = this.Candidate_Name.Split(' ');
+                            string ls_Body =  DataHandler.GetSetting("candidate_response_text").Replace("{NAME}",ls_Name[0]).Replace("{EMAIL_HEADER}",DataHandler.GetSetting("email_header"));
+                            DataHandler.SendEmail(this.Candidate_Email, "Thank you for your submission", ls_Body);
+                        }
+
+                        //Resume Submission Notification
+                        if (DataHandler.GetSetting("candidate_notification_enabled").ToUpper() == "TRUE" && this.Job_ID <= 0)
+                        {
+                            StringBuilder lo_CandidateInfo = new StringBuilder();
+                            lo_CandidateInfo.Append("Name: " + this.is_Candidate_Name + "<br/>");
+                            lo_CandidateInfo.Append("Email: " + this.is_Candidate_Email + "<br/>");
+                            lo_CandidateInfo.Append("Phone: " + this.is_Candidate_Phone + "<br/>");
+                            lo_CandidateInfo.Append(@"Resume: http://app.contentmarketinginstitute.careers/cv/resumes/" + this.is_Candidate_File + " <br/>");
+
+                            string ls_Body = DataHandler.GetSetting("candidate_notification_text").Replace("{CANDIDATE_DETAIL}",lo_CandidateInfo.ToString()).Replace("{EMAIL_HEADER}",DataHandler.GetSetting("email_header"));
+                            DataHandler.SendEmail(DataHandler.GetSetting("candidate_notification_recipients"), "New Resume Submission", ls_Body);
+                        }
+
+                //Job Submission Response
+                if (DataHandler.GetSetting("job_response_enabled").ToUpper() == "TRUE" && this.Job_ID > 0)
+                {
+                    string[] ls_Name = this.Candidate_Name.Split(' ');
+                    Job lo_Job = new Job();
+                    if (lo_Job.Retrieve(this.Job_ID))
+                    {
+                        string ls_Body = DataHandler.GetSetting("job_response_text").Replace("{NAME}", ls_Name[0]).Replace("{JOB_TITLE}", lo_Job.Job_Title).Replace("{EMAIL_HEADER}", DataHandler.GetSetting("email_header"));
+                        DataHandler.SendEmail(this.Candidate_Email, "Thank you for applying", ls_Body);
+                    }
+                }
+
+                //Job Submission Notification
+                if (DataHandler.GetSetting("job_notification_enabled").ToUpper() == "TRUE" && this.Job_ID > 0)
+                {
+                    Job lo_Job = new Job();
+                    if (lo_Job.Retrieve(this.Job_ID))
+                    {
+                        Employer lo_Employer = new Employer();
+
+                        StringBuilder lo_CandidateInfo = new StringBuilder();
+                        lo_CandidateInfo.Append("Name: " + this.is_Candidate_Name + "<br/>");
+                        lo_CandidateInfo.Append("Email: " + this.is_Candidate_Email + "<br/>");
+                        lo_CandidateInfo.Append("Phone: " + this.is_Candidate_Phone + "<br/>");
+                        lo_CandidateInfo.Append(@"Resume: http://app.contentmarketinginstitute.careers/cv/resumes/" + this.is_Candidate_File + " <br/>");
+
+                        StringBuilder lo_JobInfo = new StringBuilder();
+                        lo_JobInfo.Append("Job Title:" + lo_Job.Job_Title + "<br/>");
+                        lo_JobInfo.Append("Job_Location:" + lo_Job.Job_City + "," + lo_Job.Job_Territory + " " + lo_Job.Job_Postal_Code + " | " + lo_Job.Job_Country + "Remote Allowed: ");
+                        if (lo_Job.Job_Remote)
+                        {
+                            lo_JobInfo.Append("Yes");
+                        }
+                        else
+                        {
+                            lo_JobInfo.Append("No");
+                        }
+                        lo_JobInfo.Append("<br/>");
+                        lo_Employer.Retrieve(lo_Job.Employer_ID);
+                        lo_JobInfo.Append("Company: " + lo_Employer.Employer_Company_Name + "<br/>");
+                        lo_JobInfo.Append("Contact: " + lo_Employer.Employer_Contact_Name + ", " + lo_Employer.Employer_Contact_Title + "<br/>");
+                        lo_JobInfo.Append("Contact Info: " + lo_Employer.Employer_Contact_Email + " | " + lo_Employer.Employer_Contact_Phone + "<br/>");
+                        string ls_Body = DataHandler.GetSetting("job_notification_text").Replace("{CANDIDATE_DETAIL}", lo_CandidateInfo.ToString()).Replace("{JOB_DETAIL}", lo_JobInfo.ToString()).Replace("{EMAIL_HEADER}", DataHandler.GetSetting("email_header"));
+                        DataHandler.SendEmail(DataHandler.GetSetting("job_notification_recipients"), "New Job Submission", ls_Body);
+                    }
+                }
+
+                lb_Return = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                lb_Return = false;
             }
 
             return lb_Return;

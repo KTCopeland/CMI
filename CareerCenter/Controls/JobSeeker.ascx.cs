@@ -90,6 +90,7 @@ namespace CareerCenter.Controls
                     candidate.Candidate_File = filename;
                     if (candidate.Update())
                     {
+                        candidate.SendApplicantNotification();
                         divEntry.Visible = false;
                         divSubmitted.Visible = true;
                     }
