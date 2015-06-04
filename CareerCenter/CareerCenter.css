@@ -125,6 +125,10 @@ body {
 }
 
 /* Toolbar */
+.toolTable{
+    width:100%;
+}
+
 .toolBar {
     vertical-align: middle;
     padding: 8px 2px;
@@ -136,11 +140,11 @@ body {
 }
 
 .keyWords {
-    width: 60%;
+    width: 75%;
 }
 
 .postalCode {
-    width: 15%;
+    width: 25%;
 }
 
 .searchRange {
@@ -156,11 +160,11 @@ body {
 }
 
 .imgButton {
-    -webkit-transition: all .25s ease; /* Safari and Chrome */
-    -moz-transition: all .25s ease; /* Firefox */
-    -ms-transition: all .25s ease; /* IE 9 */
-    -o-transition: all .25s ease; /* Opera */
-    transition: all .25s ease;
+    -webkit-transition: all 1.25s ease; /* Safari and Chrome */
+    -moz-transition: all 1.25s ease; /* Firefox */
+    -ms-transition: all 1.25s ease; /* IE 9 */
+    -o-transition: all 1.25s ease; /* Opera */
+    transition: all 1.25s ease;
     height: 28px;
     vertical-align: middle;
     cursor: pointer;
@@ -288,6 +292,7 @@ body {
 hr {
     border: 0;
     height: 1px;
+    margin: 5px 0px;
     background-image: -webkit-linear-gradient(left, rgba(0,0,0,0.30), rgba(0,0,0,0.70), rgba(0,0,0,0.30));
     background-image: -moz-linear-gradient(left, rgba(0,0,0,0.30), rgba(0,0,0,0.70), rgba(0,0,0,0.30));
     background-image: -ms-linear-gradient(left, rgba(0,0,0,0.30), rgba(0,0,0,0.70), rgba(0,0,0,0.30));

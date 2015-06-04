@@ -19,6 +19,7 @@ namespace CareerCenter
         string is_Candidate_Phone = DataHandler.StringNull;
         string is_Candidate_Grade = DataHandler.StringNull;
         string is_Candidate_Source = DataHandler.StringNull;
+        string is_Candidate_File = DataHandler.StringNull;
 
         string is_DBProc = "usp_candidate";
         string is_DBTable = "candidate";
@@ -142,6 +143,25 @@ namespace CareerCenter
             }
         }
 
+        public string Candidate_File
+        {
+            get
+            {
+                return is_Candidate_File;
+            }
+            set
+            {
+                if (value.Length > 50)
+                {
+                    is_Candidate_File = value.Substring(0, 50);
+                }
+                else
+                {
+                    is_Candidate_File = value;
+                }
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -167,6 +187,7 @@ namespace CareerCenter
                     DataHandler.SetVal(ref lo_Command, "@candidate_phone", is_Candidate_Phone);
                     DataHandler.SetVal(ref lo_Command, "@candidate_grade", is_Candidate_Grade);
                     DataHandler.SetVal(ref lo_Command, "@candidate_source", is_Candidate_Source);
+                    DataHandler.SetVal(ref lo_Command, "@candidate_file", is_Candidate_File);
 
                     lo_Command.ExecuteNonQuery();
 
@@ -283,6 +304,7 @@ namespace CareerCenter
                     DataHandler.GetVal(ref this.is_Candidate_Phone, lo_Data.Tables[0].Rows[0]["candidate_phone"]);
                     DataHandler.GetVal(ref this.is_Candidate_Grade, lo_Data.Tables[0].Rows[0]["candidate_grade"]);
                     DataHandler.GetVal(ref this.is_Candidate_Source, lo_Data.Tables[0].Rows[0]["candidate_source"]);
+                    DataHandler.GetVal(ref this.is_Candidate_File, lo_Data.Tables[0].Rows[0]["candidate_file"]);
                     lo_Data.Dispose();
                     //Made it to the end without an error  Should be good to go
                     lb_Return = true;
@@ -319,6 +341,7 @@ namespace CareerCenter
                     DataHandler.SetVal(ref lo_Command, "@candidate_phone", is_Candidate_Phone);
                     DataHandler.SetVal(ref lo_Command, "@candidate_grade", is_Candidate_Grade);
                     DataHandler.SetVal(ref lo_Command, "@candidate_source", is_Candidate_Source);
+                    DataHandler.SetVal(ref lo_Command, "@candidate_file", is_Candidate_File);
 
                     lo_Command.ExecuteNonQuery();
 

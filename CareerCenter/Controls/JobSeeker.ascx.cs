@@ -63,7 +63,7 @@ namespace CareerCenter.Controls
             {
                 candidate.Candidate_Source = "Unknown";
             }
-            
+
             if (ii_Job != DataHandler.IntNull)
             {
                 candidate.Job_ID = ii_Job;
@@ -71,38 +71,37 @@ namespace CareerCenter.Controls
 
             var result = false;
             result = candidate.Create();
-            
+
             //Ensure record saved in database and file is uploaded.
             if (result && fluResume.HasFile)
-                
             {
-
                 try
                 {
                     // get file extension and append to candidate id to prepare file name
-                    string filename = string.Format("{0}{1}", candidate.Candidate_ID.ToString(),
-                        Path.GetExtension(fluResume.PostedFile.FileName));
+                    string filename = string.Format("{0}{1}", candidate.Candidate_ID.ToString(), Path.GetExtension(fluResume.PostedFile.FileName));
 
                     // Get resume store location from configuration file.
                     string fileStoreFolder = ConfigurationManager.AppSettings["CandidateResumeFolderName"].ToString();
                     //Prepare resume store location.
                     string fileStorePath = string.Format(@"{0}\{1}\{2}", Server.MapPath(@"~\cv"), fileStoreFolder, filename);
-                    
 
                     fluResume.SaveAs(fileStorePath);
 
-                    divEntry.Visible = false;
-                    divSubmitted.Visible = true;
-
+                    candidate.Candidate_File = filename;
+                    if (candidate.Update())
+                    {
+                        divEntry.Visible = false;
+                        divSubmitted.Visible = true;
+                    }
                 }
                 catch (Exception fileException)
                 {
-                    DataHandler.HandleError(fileException); 
+                    DataHandler.HandleError(fileException);
                 }
-                
-
-
             }
+
         }
+
+
     }
 }

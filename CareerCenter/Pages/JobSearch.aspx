@@ -16,7 +16,7 @@
     <form id="form1" runat="server">
         <p id='instructionText'>Enter your search criteria below to browse open jobs.</p>
         <div id="QueryEntry" style="background-color: rgba(225, 225, 200, 0.33);">
-            <table>
+            <table class="toolTable">
                 <tr>
                     <td class='toolBar keyWords'>
                         <asp:TextBox ID="txtKeywords" class='toolControl' runat="server" placeholder="Job title, industry, skills, key words..."></asp:TextBox>
@@ -36,10 +36,23 @@
                     <td class='toolBar searchButton'>
                         <img id="imgSearch" class="imgButton" src="/Images/SearchButton.png" onclick="getResults()" onmouseover="" />
                     </td>
-                    <td></td>
+
                 </tr>
             </table>
         </div>
+
+        <div id="topPageNav" style="display: none; margin-top:5px;">
+            <div id="topPrevPage" class="navGuide" onclick="navigatePrevious()">&lt;&lt;Previous Page</div>
+            <div id="topNav_1" class="navItem" onclick="navigate($('#Nav_1').text())">1</div>
+            <div id="topElipseFront" class="elipse" style="width: 25px;">...</div>
+            <div id="topNav_2" class="navItem" onclick="navigate($('#Nav_2').text())">2</div>
+            <div id="topNav_3" class="navItem" onclick="navigate($('#Nav_3').text())">3</div>
+            <div id="topElipseBack" class="elipse" style="width: 25px;">...</div>
+            <div id="topNav_4" class="navItem" onclick="navigate($('#Nav_4').text())">240</div>
+            <div id="topNextPage" class="navGuide" onclick="navigateNext()">Next Page&gt;&gt;</div>
+            <div style="clear:both;"></div>
+        </div>
+
         <div id="Results">
         </div>
         <div id="noResults" style="display: none;">
@@ -60,6 +73,13 @@
         <input id="txtIndex" type="hidden" value="1"/>
 
         <script type="text/javascript">
+
+            $(document).keypress(function (event) {
+                if (event.keyCode == 13 || event.which == 13) //KTC: Some broswers respect which, some browsers respect keyCode.
+                {
+                    getResults();
+                }
+            });
 
             function navigatePrevious() {
                 var target = parseInt($('#txtIndex').val());
@@ -82,12 +102,13 @@
 
                 if (numItems == 0) {
                     $('#PageNav').hide();
+                    $('#topPageNav').hide();
                     return; //Short circuit the whole thing is there is nothing to show
                 }
                 else {
                     $('#txtIndex').val(index);
                     $('#PageNav').show();
-
+                    $('#topPageNav').show();
                 }
 
                 var pages = Math.floor(numItems / pageItems);
@@ -104,31 +125,44 @@
                     //This is to put the nav buttons back if they have been previously wiped.  Downstream code expects them to be shown...
                     for (var loop = 1; loop <= 4; loop++) {
                         $('#Nav_' + loop).show();
+                        $('#topNav_' + loop).show();
                     }
                     $('#PrevPage').show();
+                    $('#topPrevPage').show();
                     $('#NextPage').show();
+                    $('#topNextPage').show();
                 }
 
                 if (pages <= 4) {
                     for (var loop = 1; loop <= 4; loop++) {
                         if (loop <= pages) {
                             $('#Nav_' + loop).html(loop);
+                            $('#topNav_' + loop).html(loop);
                             if (loop == index) {
                                 $('#Nav_' + loop).removeClass().addClass("navItemCurrent");
+                                $('#topNav_' + loop).removeClass().addClass("navItemCurrent");
                             }
                             else {
                                 $('#Nav_' + loop).removeClass().addClass("navItem");
+                                $('#topNav_' + loop).removeClass().addClass("navItem");
                             }
                             $('#Nav_' + loop).show();
+                            $('#topNav_' + loop).show();
                         }
                         else {
                             $('#Nav_' + loop).hide();
+                            $('#topNav_' + loop).hide();
                         }
                     }
                     $('#ElipseFront').hide();
                     $('#ElipseBack').hide();
                     $('#PrevPage').hide();
                     $('#NextPage').hide();
+
+                    $('#topElipseFront').hide();
+                    $('#topElipseBack').hide();
+                    $('#topPrevPage').hide();
+                    $('#topNextPage').hide();
 
                 }
                 else if (index == 1) {
@@ -144,6 +178,19 @@
                     $('#Nav_4').html(pages);
                     $('#Nav_4').removeClass().addClass("navItem");
                     $('#NextPage').removeClass().addClass('navGuideAvailable');
+
+                    $('#topPrevPage').removeClass().addClass('navGuide');
+                    $('#topNav_1').html('1');
+                    $('#topNav_1').removeClass().addClass("navItemCurrent");
+                    $('#topElipseFront').hide();
+                    $('#topNav_2').html('2');
+                    $('#topNav_2').removeClass().addClass("navItem");
+                    $('#topNav_3').html('3');
+                    $('#topNav_3').removeClass().addClass("navItem");
+                    $('#topElipseBack').show();
+                    $('#topNav_4').html(pages);
+                    $('#topNav_4').removeClass().addClass("navItem");
+                    $('#topNextPage').removeClass().addClass('navGuideAvailable');
                 }
                 else if (index == pages) {
                     $('#PrevPage').removeClass().addClass('navGuideAvailable');
@@ -158,24 +205,50 @@
                     $('#Nav_4').html(pages);
                     $('#Nav_4').removeClass().addClass("navItemCurrent");
                     $('#NextPage').removeClass().addClass('navGuide');
+
+                    $('#topPrevPage').removeClass().addClass('navGuideAvailable');
+                    $('#topNav_1').html('1');
+                    $('#topNav_1').removeClass().addClass("navItem");
+                    $('#topElipseFront').show();
+                    $('#topNav_2').html(index - 2);
+                    $('#topNav_2').removeClass().addClass("navItem");
+                    $('#topNav_3').html(index - 1);
+                    $('#topNav_3').removeClass().addClass("navItem");
+                    $('#topElipseBack').hide();
+                    $('#topNav_4').html(pages);
+                    $('#topNav_4').removeClass().addClass("navItemCurrent");
+                    $('#topNextPage').removeClass().addClass('navGuide');
                 }
                 else {
                     $('#PrevPage').removeClass().addClass('navGuideAvailable');
                     $('#Nav_1').html('1');
                     $('#Nav_1').removeClass().addClass("navItem");
+
+                    $('#topPrevPage').removeClass().addClass('navGuideAvailable');
+                    $('#topNav_1').html('1');
+                    $('#topNav_1').removeClass().addClass("navItem");
+
                     if (index != 2) {
                         //This avoids oddiy of having 1 listed twice
                         $('#Nav_2').html(index - 1);
                         $('#Nav_2').removeClass().addClass("navItem");
                         $('#Nav_3').html(index);
                         $('#Nav_3').removeClass().addClass("navItemCurrent");
+
+                        $('#topNav_2').html(index - 1);
+                        $('#topNav_2').removeClass().addClass("navItem");
+                        $('#topNav_3').html(index);
+                        $('#topNav_3').removeClass().addClass("navItemCurrent");
+
                         if (index != 3) {
                             //This avoids case where elipse appears between 1 and 2, which doesn't make much sense...
                             $('#ElipseFront').show();
+                            $('#topElipseFront').show();
                         }
                         else
                         {
                             $('#ElipseFront').show();
+                            $('#topElipseFront').show();
                         }
                     }
                     else {
@@ -184,18 +257,30 @@
                         $('#Nav_3').html(3);
                         $('#Nav_3').removeClass().addClass("navItem");
                         $('#ElipseFront').hide();
+
+                        $('#topNav_2').html(2);
+                        $('#topNav_2').removeClass().addClass("navItemCurrent");
+                        $('#topNav_3').html(3);
+                        $('#topNav_3').removeClass().addClass("navItem");
+                        $('#topElipseFront').hide();
                     }
 
                     if (index != pages - 1) {
                         //This avoids case where elipse appears between pentultimate and last page
                         $('#ElipseBack').show();
+                        $('#topElipseBack').show();
                     }
                     else {
                         $('#ElipseBack').hide();
+                        $('#topElipseBack').hide();
                     }
                     $('#Nav_4').html(pages);
                     $('#Nav_4').removeClass().addClass("navItem");
                     $('#NextPage').removeClass().addClass('navGuideAvailable');
+
+                    $('#topNav_4').html(pages);
+                    $('#topNav_4').removeClass().addClass("navItem");
+                    $('#topNextPage').removeClass().addClass('navGuideAvailable');
                 }
 
                 //So much for that.  Now show the items that match the selected page
