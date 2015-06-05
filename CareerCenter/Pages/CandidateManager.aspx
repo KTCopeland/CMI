@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="JobManager.aspx.cs" Inherits="CareerCenter.Pages.JobManager" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CandidateManager.aspx.cs" Inherits="CareerCenter.Pages.CandidateManager" %>
 
 <!DOCTYPE html>
 
@@ -9,14 +9,14 @@
     <script src ="/js/ga.js"></script>
 
     <style>
-        .jobManagerList{
+        .candidateManagerList{
             border: 5px groove #000000;
             font-family:Arial, Helvetica, sans-serif;
                     }
-        .jobManagerList .topTableRow{
+        .candidateManagerList .topTableRow{
             font-weight:bold;
         }
-        .jobManagerList td {
+        .candidateManagerList td {
             border-bottom: 3px solid #ffffff;
             border-right: 3px solid #ffffff;
             background-color:#f3f3f3;
@@ -44,11 +44,9 @@
         </table>
         <hr />
     <div>
-    
-        <asp:Button ID="cmdNew" runat="server" Text="New Job" OnClick="cmdNew_Click" />   <asp:Button ID="cmdBack" runat="server" Text="Go Back" OnClick="cmdBack_Click" />
+        <asp:Button ID="cmdBack" runat="server" Text="Go Back" OnClick="cmdBack_Click" />
         <hr />
         <asp:PlaceHolder ID="ph_List" runat="server"></asp:PlaceHolder>
-
     </div>
     </form>
 </body>

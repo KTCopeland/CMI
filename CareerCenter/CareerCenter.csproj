@@ -61,10 +61,17 @@
     <Content Include="Controls\EmployerControl.ascx" />
     <Content Include="Controls\JobSeeker.ascx" />
     <Content Include="cv\Resumes\Sample.txt" />
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Analytics.png" />
     <Content Include="Images\arrow-right.png" />
+    <Content Include="Images\Candidates.png" />
     <Content Include="Images\ExperisLogo.png" />
     <Content Include="Images\ExperisSignature.png" />
+    <Content Include="Images\Home.png" />
+    <Content Include="Images\JobManager.png" />
+    <Content Include="Images\Keys.png" />
+    <Content Include="Images\NewJob.png" />
     <Content Include="Images\SearchButton.png" />
     <Content Include="js\ckeditor\adapters\jquery.js" />
     <Content Include="js\ckeditor\build-config.js" />
@@ -305,11 +312,13 @@
     <Content Include="js\ga.js" />
     <Content Include="js\jquery-ui-1.10.3.js" />
     <Content Include="js\jquery-ui-1.10.3.min.js" />
+    <Content Include="Pages\CandidateManager.aspx" />
     <Content Include="Pages\EditJob.aspx" />
     <Content Include="Pages\FindTalent.aspx" />
     <Content Include="Ajax\JobQuery.aspx" />
     <Content Include="Pages\JobManager.aspx" />
     <Content Include="Pages\JobSearch.aspx" />
+    <Content Include="Pages\Manager.aspx" />
     <Content Include="Pages\SampleList.aspx" />
     <Content Include="Pages\ShowJob.aspx" />
     <Content Include="Pages\UploadResume.aspx" />
@@ -337,8 +346,22 @@
     <Compile Include="Core\MailHandler.cs" />
     <Compile Include="Core\Query.cs" />
     <Compile Include="Core\Setting.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CandidateManager.aspx.cs">
+      <DependentUpon>CandidateManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CandidateManager.aspx.designer.cs">
+      <DependentUpon>CandidateManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditJob.aspx.cs">
       <DependentUpon>EditJob.aspx</DependentUpon>
@@ -374,6 +397,13 @@
     </Compile>
     <Compile Include="Pages\JobSearch.aspx.designer.cs">
       <DependentUpon>JobSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manager.aspx.cs">
+      <DependentUpon>Manager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Manager.aspx.designer.cs">
+      <DependentUpon>Manager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\SampleList.aspx.cs">
       <DependentUpon>SampleList.aspx</DependentUpon>

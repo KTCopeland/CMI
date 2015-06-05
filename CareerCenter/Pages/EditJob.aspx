@@ -28,13 +28,26 @@
         #divDescription{
             font-family: Arial, Helvetica, sans-serif;
         }
+        .appName {
+            font-size: 28px;
+            font-weight: 700;
+            display: table-cell;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:HiddenField ID="hfDescription" runat="server" />
-
-        <div id="divEditMenu"></div>
+        <table>
+            <tr>
+                <td>
+                    <img src="../Images/ExperisLogo.png" /></td>
+                <td class="appName">Career Center Manager</td>
+            </tr>
+        </table>
+        <hr />
+        <div id="divEditMenu"></div> 
 
         <div class="divHeader">
 

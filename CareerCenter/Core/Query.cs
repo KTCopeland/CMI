@@ -290,6 +290,102 @@ namespace CareerCenter
             return lsb_Return.ToString();
         }
 
+
+        public string GetCandidateList(bool ab_ActiveOnly)
+        {
+            return GetCandidateList(ab_ActiveOnly, "");
+        }
+
+        public string GetCandidateList(bool ab_ActiveOnly, string as_Where)
+        {
+            StringBuilder lsb_Return = new StringBuilder();
+
+            string ls_SQL = "Select * from vw_candidate";
+
+            if (ab_ActiveOnly)
+            {
+                ls_SQL += "_active";
+            }
+            else
+            {
+                ls_SQL += "_all";
+            }
+
+            if (as_Where!= "")
+            {
+                ls_SQL += " where " + as_Where;
+            }
+
+            DataSet lo_Candidates = new DataSet();
+
+            lsb_Return.Append("<table class='candidateManagerList'>");
+            lsb_Return.Append("<tr class='topTableRow'>");
+            lsb_Return.Append("<td>ID</td>");
+            lsb_Return.Append("<td>Candidate</td>");
+            lsb_Return.Append("<td>Email</td>");
+            lsb_Return.Append("<td>Phone</td>");
+            lsb_Return.Append("<td>Resume</td>");
+            lsb_Return.Append("<td>Job ID</td>");
+            lsb_Return.Append("<td>Job Title</td>");
+            lsb_Return.Append("</tr>");
+
+            if (DataHandler.GetDatasetFromQuery(ref lo_Candidates, ls_SQL + " order by candidate_id desc"))
+            {
+                for (int li_Loop = 0; li_Loop < lo_Candidates.Tables[0].Rows.Count; li_Loop++)
+                {
+                    lsb_Return.Append("<tr>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Candidates.Tables[0].Rows[li_Loop]["candidate_id"].ToString().PadLeft(5, '0'));
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Candidates.Tables[0].Rows[li_Loop]["candidate_name"].ToString());
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append("<a href='mailto:" + lo_Candidates.Tables[0].Rows[li_Loop]["candidate_email"].ToString() + "'>" + lo_Candidates.Tables[0].Rows[li_Loop]["candidate_email"].ToString() +"</a>");
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    if (lo_Candidates.Tables[0].Rows[li_Loop]["candidate_phone"] != DBNull.Value)
+                    {
+                    lsb_Return.Append(lo_Candidates.Tables[0].Rows[li_Loop]["candidate_phone"].ToString());
+                    }
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    if (lo_Candidates.Tables[0].Rows[li_Loop]["candidate_file"] != DBNull.Value)
+                    {
+                        lsb_Return.Append("<a href='" + @"/cv/resumes/" + lo_Candidates.Tables[0].Rows[li_Loop]["candidate_file"].ToString() + "'>Resume</a>");
+                    }
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    if (lo_Candidates.Tables[0].Rows[li_Loop]["job_id"] != DBNull.Value)
+                    {
+                        lsb_Return.Append("<a href='" + @"/pages/EditJob.aspx?id=" + lo_Candidates.Tables[0].Rows[li_Loop]["job_id"].ToString() + "'>" + lo_Candidates.Tables[0].Rows[li_Loop]["job_id"].ToString().PadLeft(5, '0') + "</a>");
+                    }
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    if (lo_Candidates.Tables[0].Rows[li_Loop]["job_title"] != DBNull.Value)
+                    {
+                        lsb_Return.Append("<a href='" + @"/pages/EditJob.aspx?id=" + lo_Candidates.Tables[0].Rows[li_Loop]["job_id"].ToString() + "'>" + lo_Candidates.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a>");
+                    }
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("</tr>");
+
+                }
+
+            }
+
+
+            return lsb_Return.ToString();
+        }
+
+
         public Dictionary<int, string> Results
         {
             get
@@ -297,6 +393,7 @@ namespace CareerCenter
                 return io_Results;
             }
         }
+
 
     }
 

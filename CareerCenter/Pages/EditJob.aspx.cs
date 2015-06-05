@@ -11,6 +11,20 @@ namespace CareerCenter.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string ls_Session = "";
+            try
+            {
+                ls_Session = Session["Authentication"].ToString();
+            }
+            catch
+            {
+                Session.Add("Authentication", "");
+            }
+
+            if (ls_Session == "")
+            {
+                Response.Redirect("Manager.aspx");
+            }
 
             Job lo_Job = new Job();
             string ls_Status = "Unknown";

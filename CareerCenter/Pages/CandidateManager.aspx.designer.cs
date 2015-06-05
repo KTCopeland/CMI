@@ -10,7 +10,7 @@
 namespace CareerCenter.Pages {
     
     
-    public partial class JobManager {
+    public partial class CandidateManager {
         
         /// <summary>
         /// form1 control.
@@ -20,15 +20,6 @@ namespace CareerCenter.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// cmdNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdNew;
         
         /// <summary>
         /// cmdBack control.
