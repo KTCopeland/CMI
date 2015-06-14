@@ -103,6 +103,24 @@ namespace CareerCenter.Pages {
         protected global::System.Web.UI.WebControls.TextBox txtInactiveDate;
         
         /// <summary>
+        /// ddlTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTerm;
+        
+        /// <summary>
+        /// txtFoxCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFoxCode;
+        
+        /// <summary>
         /// chkAvailable control.
         /// </summary>
         /// <remarks>

@@ -87,6 +87,19 @@
                     <td>Inactive Date</td>
                     <td>
                         <asp:TextBox ID="txtInactiveDate" runat="server"></asp:TextBox></td>
+                    <td>Term</td>
+                    <td>
+                        <asp:DropDownList ID="ddlTerm" runat="server" Width="150px">
+                            <asp:ListItem  Value="C" Text="Contract Position"></asp:ListItem>
+                            <asp:ListItem  Value="T" Text="Contract To Hire"></asp:ListItem>
+                            <asp:ListItem  Value="H" Text="Direct Hire"></asp:ListItem>
+                        </asp:DropDownList>
+                        
+                    </td>
+                    <td>Fox Code</td>
+                    <td>
+                        <asp:TextBox ID="txtFoxCode" runat="server"></asp:TextBox>
+                    </td>
                     <td>
                         <asp:CheckBox ID="chkAvailable" runat="server" Text="Job Available" TextAlign="Left" /></td>
                 </tr>

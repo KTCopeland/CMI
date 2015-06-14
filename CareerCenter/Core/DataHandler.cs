@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Web;
 
 namespace CareerCenter
 {
@@ -500,7 +504,45 @@ namespace CareerCenter
             return lb_Return;
         }
 
-        #endregion       
+        #endregion      
+ 
+        #region Export Data
+
+        public static string Export(ref DataTable ao_Table)
+        {
+            string ls_Return = ""; //This will be the filename that will be returned if all goes well.  Otherwise, return ""
+            string ls_FileName = ""; //This will be the local filename
+            StringBuilder sb = new StringBuilder();
+
+            try
+            {
+                IEnumerable<string> columnNames = ao_Table.Columns.Cast<DataColumn>().
+                                                  Select(column => column.ColumnName);
+                sb.AppendLine(string.Join(",", columnNames));
+
+                foreach (DataRow row in ao_Table.Rows)
+                {
+                    IEnumerable<string> fields = row.ItemArray.Select(field =>
+                      string.Concat("\"", field.ToString().Replace("\"", "\"\""), "\""));
+                    sb.AppendLine(string.Join(",", fields));
+                }
+
+                //Generate File Name....
+                ls_FileName = ao_Table.TableName + "_" + DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString() + "_" + DateTime.Now.Millisecond.ToString() + ".csv";
+
+                File.WriteAllText(HttpContext.Current.Server.MapPath(@"~\report\") + ls_FileName, sb.ToString());
+                ls_Return = @"http://app.contentmarketinginstitute.careers/report/" + ls_FileName;
+
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+                ls_Return = ""; //Something went wrong, so unfortunately, there is no file to share :(
+            }
+            return ls_Return;
+        }
+
+        #endregion
 
     }
 }

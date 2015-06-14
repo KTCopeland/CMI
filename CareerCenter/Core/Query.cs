@@ -164,7 +164,7 @@ namespace CareerCenter
         public string GetSampleList()
         {
             StringBuilder lsb_Return = new StringBuilder();
-            string ls_SQL = "select top 5 * from vw_job_active";
+            string ls_SQL = "select top 5 * from vw_job_active order by job_id desc";
             DataSet lo_Jobs = new DataSet();
 
             //lsb_Return.Append("Open Jobs<br/>");
@@ -234,6 +234,8 @@ namespace CareerCenter
             lsb_Return.Append("<td>Employer</td>");
             lsb_Return.Append("<td>Active Date</td>");
             lsb_Return.Append("<td>Inactive Date</td>");
+            lsb_Return.Append("<td>Time Stamp</td>");
+            lsb_Return.Append("<td>Fox Code</td>");
             lsb_Return.Append("<td>Available</td>");
             lsb_Return.Append("</tr>");
             try
@@ -266,6 +268,20 @@ namespace CareerCenter
 
                         lsb_Return.Append("<td>");
                         lsb_Return.Append(((DateTime)lo_Jobs.Tables[0].Rows[li_Loop]["job_inactive_date"]).ToString("MM/dd/yyyy"));
+                        lsb_Return.Append("</td>");
+
+                        lsb_Return.Append("<td>");
+                        lsb_Return.Append(((DateTime)lo_Jobs.Tables[0].Rows[li_Loop]["job_timestamp"]).ToString("MM/dd/yyyy"));
+                        lsb_Return.Append("</td>");
+
+                        lsb_Return.Append("<td>");
+                        string ls_FoxCode = lo_Jobs.Tables[0].Rows[li_Loop]["job_foxcode"].ToString();
+                        if (ls_FoxCode != "")
+                        {
+                            lsb_Return.Append(@"<a target = '_blank' href ='http://fox.experis.us/xp/jobDetails.do?job_uk=" + ls_FoxCode.ToUpper().Replace("J","").Replace("-","").Replace(" ","") + "'>");
+                            lsb_Return.Append(lo_Jobs.Tables[0].Rows[li_Loop]["job_foxcode"].ToString());
+                            lsb_Return.Append("</a>");
+                        }
                         lsb_Return.Append("</td>");
 
                         lsb_Return.Append("<td>");
@@ -381,10 +397,166 @@ namespace CareerCenter
 
             }
 
+            return lsb_Return.ToString();
+        }
+
+
+        public string GetEmployerList(bool ab_ActiveOnly)
+        {
+            return GetEmployerList(ab_ActiveOnly, "");
+        }
+
+        public string GetEmployerList(bool ab_ActiveOnly, string as_Where)
+        {
+            StringBuilder lsb_Return = new StringBuilder();
+
+            string ls_SQL = "Select * from vw_employer";
+
+            if (ab_ActiveOnly)
+            {
+                ls_SQL += "_active";
+            }
+            else
+            {
+                ls_SQL += "_all";
+            }
+
+            if (as_Where != "")
+            {
+                ls_SQL += " where " + as_Where;
+            }
+
+            DataSet lo_Employers = new DataSet();
+            //employer_id, employer_company_name, employer_contact_name, employer_contact_email, employer_contact_phone, employer_contact_title, employer_available
+            lsb_Return.Append("<table class='employerManagerList'>");
+            lsb_Return.Append("<tr class='topTableRow'>");
+            lsb_Return.Append("<td>ID</td>");
+            lsb_Return.Append("<td>Employer</td>");
+            lsb_Return.Append("<td>Contact Name</td>");
+            lsb_Return.Append("<td>Email</td>");
+            lsb_Return.Append("<td>Phone</td>");
+            lsb_Return.Append("<td>Job Title</td>");
+            lsb_Return.Append("<td>Available</td>");
+            lsb_Return.Append("</tr>");
+
+            if (DataHandler.GetDatasetFromQuery(ref lo_Employers, ls_SQL + " order by employer_id desc"))
+            {
+                for (int li_Loop = 0; li_Loop < lo_Employers.Tables[0].Rows.Count; li_Loop++)
+                {
+                    lsb_Return.Append("<tr>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Employers.Tables[0].Rows[li_Loop]["employer_id"].ToString().PadLeft(5, '0'));
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Employers.Tables[0].Rows[li_Loop]["employer_company_name"].ToString());
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Employers.Tables[0].Rows[li_Loop]["employer_contact_name"].ToString());
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append("<a href='mailto:" + lo_Employers.Tables[0].Rows[li_Loop]["employer_contact_email"].ToString() + "'>" + lo_Employers.Tables[0].Rows[li_Loop]["employer_contact_email"].ToString() + "</a>");
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    if (lo_Employers.Tables[0].Rows[li_Loop]["employer_contact_phone"] != DBNull.Value)
+                    {
+                        lsb_Return.Append(lo_Employers.Tables[0].Rows[li_Loop]["employer_contact_phone"].ToString());
+                    }
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    if (lo_Employers.Tables[0].Rows[li_Loop]["employer_contact_title"] != DBNull.Value)
+                    {
+                        lsb_Return.Append(lo_Employers.Tables[0].Rows[li_Loop]["employer_contact_title"].ToString());
+                    }
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Employers.Tables[0].Rows[li_Loop]["employer_available"].ToString());
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("</tr>");
+
+                }
+
+            }
 
             return lsb_Return.ToString();
         }
 
+        public string GetUserList(bool ab_ActiveOnly)
+        {
+            return GetUserList(ab_ActiveOnly, "");
+        }
+
+        public string GetUserList(bool ab_ActiveOnly, string as_Where)
+        {
+            StringBuilder lsb_Return = new StringBuilder();
+
+            string ls_SQL = "Select * from vw_appuser";
+
+            if (ab_ActiveOnly)
+            {
+                ls_SQL += "_active";
+            }
+            else
+            {
+                ls_SQL += "_all";
+            }
+
+            if (as_Where != "")
+            {
+                ls_SQL += " where " + as_Where;
+            }
+
+            DataSet lo_Users = new DataSet();
+            //
+            lsb_Return.Append("<table class='userManagerList'>");
+            lsb_Return.Append("<tr class='topTableRow'>");
+            lsb_Return.Append("<td>User Name</td>");
+            lsb_Return.Append("<td>Email</td>");
+            lsb_Return.Append("<td>Last Login</td>");
+            lsb_Return.Append("<td>Failed Attempts</td>");
+            lsb_Return.Append("<td>Available</td>");
+            lsb_Return.Append("</tr>");
+
+            if (DataHandler.GetDatasetFromQuery(ref lo_Users, ls_SQL + " order by appuser_name asc"))
+            {
+                for (int li_Loop = 0; li_Loop < lo_Users.Tables[0].Rows.Count; li_Loop++)
+                {
+                    lsb_Return.Append("<tr>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append("<a href='EditUser.aspx?u=" + lo_Users.Tables[0].Rows[li_Loop]["appuser_name"].ToString() + "'>" + lo_Users.Tables[0].Rows[li_Loop]["appuser_name"].ToString() + "</a>");
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append("<a href='mailto:" + lo_Users.Tables[0].Rows[li_Loop]["appuser_email"].ToString() + "'>" + lo_Users.Tables[0].Rows[li_Loop]["appuser_email"].ToString() + "</a>");
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Users.Tables[0].Rows[li_Loop]["appuser_lastlogin"].ToString());
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Users.Tables[0].Rows[li_Loop]["appuser_fails"].ToString());
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("<td>");
+                    lsb_Return.Append(lo_Users.Tables[0].Rows[li_Loop]["appuser_available"].ToString());
+                    lsb_Return.Append("</td>");
+
+                    lsb_Return.Append("</tr>");
+                }
+
+            }
+
+            return lsb_Return.ToString();
+        }
 
         public Dictionary<int, string> Results
         {

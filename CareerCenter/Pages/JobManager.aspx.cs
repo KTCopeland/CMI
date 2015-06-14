@@ -21,13 +21,16 @@ namespace CareerCenter.Pages
                 Session.Add("Authentication", "");
             }
 
-            if (ls_Session == "")
+            if (Encryption.ValidateToken(ls_Session) == "" || ls_Session == "")
             {
                 Response.Redirect("Manager.aspx");
             }
 
-            Query lo_Query = new Query();
-            ph_List.Controls.Add(new LiteralControl(lo_Query.GetJobList()));
+            if (!IsPostBack)
+            {
+                Query lo_Query = new Query();
+                ph_List.Controls.Add(new LiteralControl(lo_Query.GetJobList()));
+            }
         }
 
         protected void cmdNew_Click(object sender, EventArgs e)
@@ -38,6 +41,24 @@ namespace CareerCenter.Pages
         protected void cmdBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("Manager.aspx");
+        }
+
+        protected void cmdView_Click(object sender, EventArgs e)
+        {
+            if (cmdView.Text.ToLower() == "show all jobs")
+            {
+                cmdView.Text = "Show Available Only";
+                Query lo_Query = new Query();
+                ph_List.Controls.Clear();
+                ph_List.Controls.Add(new LiteralControl(lo_Query.GetJobList(false)));
+            }
+            else
+            {
+                cmdView.Text = "Show All Jobs";
+                Query lo_Query = new Query();
+                ph_List.Controls.Clear();
+                ph_List.Controls.Add(new LiteralControl(lo_Query.GetJobList()));
+            }
         }
     }
 }

@@ -66,13 +66,17 @@
     <Content Include="Images\Analytics.png" />
     <Content Include="Images\arrow-right.png" />
     <Content Include="Images\Candidates.png" />
+    <Content Include="Images\Employers.png" />
     <Content Include="Images\ExperisLogo.png" />
     <Content Include="Images\ExperisSignature.png" />
+    <Content Include="Images\Export.png" />
     <Content Include="Images\Home.png" />
     <Content Include="Images\JobManager.png" />
     <Content Include="Images\Keys.png" />
     <Content Include="Images\NewJob.png" />
+    <Content Include="Images\Password.png" />
     <Content Include="Images\SearchButton.png" />
+    <Content Include="Images\Users.png" />
     <Content Include="js\ckeditor\adapters\jquery.js" />
     <Content Include="js\ckeditor\build-config.js" />
     <Content Include="js\ckeditor\ckeditor.js" />
@@ -313,7 +317,10 @@
     <Content Include="js\jquery-ui-1.10.3.js" />
     <Content Include="js\jquery-ui-1.10.3.min.js" />
     <Content Include="Pages\CandidateManager.aspx" />
+    <Content Include="Pages\ChangePassword.aspx" />
     <Content Include="Pages\EditJob.aspx" />
+    <Content Include="Pages\EditUser.aspx" />
+    <Content Include="Pages\EmployerManager.aspx" />
     <Content Include="Pages\FindTalent.aspx" />
     <Content Include="Ajax\JobQuery.aspx" />
     <Content Include="Pages\JobManager.aspx" />
@@ -322,6 +329,7 @@
     <Content Include="Pages\SampleList.aspx" />
     <Content Include="Pages\ShowJob.aspx" />
     <Content Include="Pages\UploadResume.aspx" />
+    <Content Include="Pages\UserManager.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -342,6 +350,7 @@
     <Compile Include="Core\Candidate.cs" />
     <Compile Include="Core\DataHandler.cs" />
     <Compile Include="Core\Employer.cs" />
+    <Compile Include="Core\Encryption.cs" />
     <Compile Include="Core\Job.cs" />
     <Compile Include="Core\MailHandler.cs" />
     <Compile Include="Core\Query.cs" />
@@ -363,12 +372,33 @@
     <Compile Include="Pages\CandidateManager.aspx.designer.cs">
       <DependentUpon>CandidateManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditJob.aspx.cs">
       <DependentUpon>EditJob.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\EditJob.aspx.designer.cs">
       <DependentUpon>EditJob.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EmployerManager.aspx.cs">
+      <DependentUpon>EmployerManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\EmployerManager.aspx.designer.cs">
+      <DependentUpon>EmployerManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\FindTalent.aspx.cs">
       <DependentUpon>FindTalent.aspx</DependentUpon>
@@ -426,6 +456,13 @@
     <Compile Include="Pages\UploadResume.aspx.designer.cs">
       <DependentUpon>UploadResume.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserManager.aspx.cs">
+      <DependentUpon>UserManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserManager.aspx.designer.cs">
+      <DependentUpon>UserManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -475,6 +512,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Resumes\" />
+    <Folder Include="report\" />
     <Folder Include="Resumes\" />
   </ItemGroup>
   <PropertyGroup>

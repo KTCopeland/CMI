@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CareerCenter.Pages
 {
-    public partial class CandidateManager : System.Web.UI.Page
+    public partial class UserManager : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,12 +27,17 @@ namespace CareerCenter.Pages
             }
 
             Query lo_Query = new Query();
-            ph_List.Controls.Add(new LiteralControl(lo_Query.GetCandidateList(false)));
+            ph_List.Controls.Add(new LiteralControl(lo_Query.GetUserList(false)));
         }
 
         protected void cmdBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("Manager.aspx");
+        }
+
+        protected void cmdNew_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EditUser.aspx");
         }
     }
 }

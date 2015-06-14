@@ -21,6 +21,7 @@ namespace CareerCenter
         string is_Job_Postal_Code = DataHandler.StringNull;
         string is_Job_Country = DataHandler.StringNull;
         string is_Job_Term = DataHandler.StringNull;
+        string is_Job_FoxCode = DataHandler.StringNull;
         DateTime idt_Job_Active_Date = DataHandler.DateTimeNull;
         DateTime idt_Job_Inactive_Date = DataHandler.DateTimeNull;
         bool ib_Job_Remote = false; //default to not remote
@@ -187,6 +188,25 @@ namespace CareerCenter
             }
         }
 
+        public string Job_FoxCode
+        {
+            get
+            {
+                return is_Job_FoxCode;
+            }
+            set
+            {
+                if (value.Length > 100)
+                {
+                    is_Job_FoxCode = value.Substring(0, 100);
+                }
+                else
+                {
+                    is_Job_FoxCode = value;
+                }
+            }
+        }
+
         public DateTime Job_Active_Date
         {
             get
@@ -261,6 +281,7 @@ namespace CareerCenter
                     DataHandler.SetVal(ref lo_Command, "@job_postal_code", is_Job_Postal_Code);
                     DataHandler.SetVal(ref lo_Command, "@job_country", is_Job_Country);
                     DataHandler.SetVal(ref lo_Command, "@job_term", is_Job_Term);
+                    DataHandler.SetVal(ref lo_Command, "@job_foxcode", is_Job_FoxCode);
                     DataHandler.SetVal(ref lo_Command, "@job_active_date", idt_Job_Active_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_inactive_date", idt_Job_Inactive_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_remote", ib_Job_Remote);
@@ -316,6 +337,7 @@ namespace CareerCenter
                     DataHandler.GetVal(ref this.is_Job_Postal_Code, lo_Data.Tables[0].Rows[0]["job_postal_code"]);
                     DataHandler.GetVal(ref this.is_Job_Country, lo_Data.Tables[0].Rows[0]["job_country"]);
                     DataHandler.GetVal(ref this.is_Job_Term, lo_Data.Tables[0].Rows[0]["job_term"]);
+                    DataHandler.GetVal(ref this.is_Job_FoxCode, lo_Data.Tables[0].Rows[0]["job_foxcode"]);
                     DataHandler.GetVal(ref this.idt_Job_Active_Date, lo_Data.Tables[0].Rows[0]["job_active_date"]);
                     DataHandler.GetVal(ref this.idt_Job_Inactive_Date, lo_Data.Tables[0].Rows[0]["job_inactive_date"]);
                     DataHandler.GetVal(ref this.ib_Job_Remote, lo_Data.Tables[0].Rows[0]["job_remote"]);
@@ -358,7 +380,8 @@ namespace CareerCenter
                     DataHandler.SetVal(ref lo_Command, "@job_territory", is_Job_Territory);
                     DataHandler.SetVal(ref lo_Command, "@job_postal_code", is_Job_Postal_Code);
                     DataHandler.SetVal(ref lo_Command, "@job_country", is_Job_Country);
-                    DataHandler.SetVal(ref lo_Command, "@job_country", is_Job_Term);
+                    DataHandler.SetVal(ref lo_Command, "@job_term", is_Job_Term);
+                    DataHandler.SetVal(ref lo_Command, "@job_foxcode", is_Job_FoxCode);
                     DataHandler.SetVal(ref lo_Command, "@job_active_date", idt_Job_Active_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_inactive_date", idt_Job_Inactive_Date);
                     DataHandler.SetVal(ref lo_Command, "@job_remote", ib_Job_Remote);

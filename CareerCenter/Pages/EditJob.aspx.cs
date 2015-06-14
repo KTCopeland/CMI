@@ -21,7 +21,7 @@ namespace CareerCenter.Pages
                 Session.Add("Authentication", "");
             }
 
-            if (ls_Session == "")
+            if (Encryption.ValidateToken(ls_Session) == "" || ls_Session == "")
             {
                 Response.Redirect("Manager.aspx");
             }
@@ -54,11 +54,20 @@ namespace CareerCenter.Pages
                     txtID.Text = lo_Job.Job_ID.ToString().PadLeft(6, '0');
                     txtTitle.Text = lo_Job.Job_Title;
                     ddlEmployer.SelectedValue = lo_Job.Employer_ID.ToString();
+                    ddlTerm.SelectedValue = lo_Job.Job_Term;
                     txtCity.Text = lo_Job.Job_City;
                     txtTerritory.Text = lo_Job.Job_Territory;
                     txtPostalCode.Text = lo_Job.Job_Postal_Code;
                     txtActiveDate.Text = lo_Job.Job_Active_Date.ToString("MM/dd/yyyy");
                     txtInactiveDate.Text = lo_Job.Job_Inactive_Date.ToString("MM/dd/yyyy");
+                    if (lo_Job.Job_FoxCode != DataHandler.StringNull)
+                    {
+                        txtFoxCode.Text = lo_Job.Job_FoxCode;
+                    }
+                    else
+                    {
+                        txtFoxCode.Text = "";
+                    }
                     chkAvailable.Checked = lo_Job.Job_Available;
                     divDescription.InnerHtml = lo_Job.Job_Description;
                     ls_Status = "Loaded";
@@ -87,11 +96,13 @@ namespace CareerCenter.Pages
                 lo_Job.Job_Title = txtTitle.Text;
                 lo_Job.Job_Description = hfDescription.Value;
                 lo_Job.Employer_ID = int.Parse(ddlEmployer.SelectedValue.ToString());
+                lo_Job.Job_Term = ddlTerm.SelectedValue;
                 lo_Job.Job_City = txtCity.Text;
                 lo_Job.Job_Territory = txtTerritory.Text;
                 lo_Job.Job_Postal_Code = txtPostalCode.Text;
                 lo_Job.Job_Active_Date = DateTime.Parse(txtActiveDate.Text);
                 lo_Job.Job_Inactive_Date = DateTime.Parse(txtInactiveDate.Text);
+                lo_Job.Job_FoxCode = txtFoxCode.Text;
                 lo_Job.Job_Available = chkAvailable.Checked;
                 lo_Job.Job_Country = "United States of America"; //Change this if international functionality is added.
 

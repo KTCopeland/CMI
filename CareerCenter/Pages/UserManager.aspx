@@ -1,28 +1,27 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="JobManager.aspx.cs" Inherits="CareerCenter.Pages.JobManager" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserManager.aspx.cs" Inherits="CareerCenter.Pages.UserManager" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    
     <script src ="/js/ga.js"></script>
 
     <style>
-        .jobManagerList{
+        .userManagerList{
             border: 5px groove #000000;
             font-family:Arial, Helvetica, sans-serif;
                     }
-        .jobManagerList .topTableRow{
+        .userManagerList .topTableRow{
             font-weight:bold;
         }
-        .jobManagerList td {
+        .userManagerList td {
             border-bottom: 3px solid #ffffff;
             border-right: 3px solid #ffffff;
             background-color:#f3f3f3;
             padding: 5px;
         }
-        .cmdStyle{
+        #cmdBack{
             margin-left: 15px;
         }
         .appName {
@@ -44,18 +43,11 @@
         </table>
         <hr />
     <div>
-    <table>
-        <tr>
-            <td><asp:Button ID="cmdBack" class="cmdStyle" runat="server" Text="Go Back" OnClick="cmdBack_Click" /></td>
-            <td><asp:Button ID="cmdNew" class="cmdStyle" runat="server" Text="New Job" OnClick="cmdNew_Click" /></td>
-            <td><asp:Button ID="cmdView" class="cmdStyle" runat="server" Text ="Show All Jobs" OnClick="cmdView_Click" /></td>
+        <asp:Button ID="cmdBack" runat="server" Text="Go Back" OnClick="cmdBack_Click" />
+        <asp:Button ID="cmdNew" runat="server" Text="Create User" OnClick="cmdNew_Click" />
 
-        </tr>
-    </table>
-        
         <hr />
         <asp:PlaceHolder ID="ph_List" runat="server"></asp:PlaceHolder>
-
     </div>
     </form>
 </body>

@@ -85,6 +85,15 @@
                     <td>
                         <a href="JobManager.aspx">Manage Jobs</a>
                     </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        <img class="menuImage" src="../Images/Export.png" />
+                    </td>
+                    <td>
+                        <asp:LinkButton ID="lnkExportJobs" runat="server" OnClick="lnkExportJobs_Click">Export Jobs</asp:LinkButton>
+                    </td>
+
                 </tr>
                 <tr>
                     <td>
@@ -102,7 +111,23 @@
                         <img class="menuImage" src="../Images/Candidates.png" />
                     </td>
                     <td>
-                        <a href="CandidateManager.aspx">Candidate Manager</a>
+                        <a href="CandidateManager.aspx">Candidates</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="menuImage" src="../Images/Employers.png" />
+                    </td>
+                    <td>
+                        <a href="EmployerManager.aspx">Employers</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="menuImage" src="../Images/Users.png" />
+                    </td>
+                    <td>
+                        <a href="UserManager.aspx">Users</a>
                     </td>
                 </tr>
             </table>
@@ -127,6 +152,14 @@
             </table>
             <hr class="greyLine" />
             <table>
+                <tr>
+                    <td>
+                        <img class="menuImage" src="../Images/Password.png" />
+                    </td>
+                    <td>
+                        <a href="ChangePassword.aspx">Change Password</a><br />
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <img class="menuImage" src="../Images/Keys.png" />

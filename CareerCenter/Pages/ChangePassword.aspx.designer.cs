@@ -10,7 +10,7 @@
 namespace CareerCenter.Pages {
     
     
-    public partial class JobManager {
+    public partial class ChangePassword {
         
         /// <summary>
         /// form1 control.
@@ -22,39 +22,66 @@ namespace CareerCenter.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// cmdBack control.
+        /// txtUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdBack;
+        protected global::System.Web.UI.WebControls.TextBox txtUser;
         
         /// <summary>
-        /// cmdNew control.
+        /// txtCurrent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdNew;
+        protected global::System.Web.UI.WebControls.TextBox txtCurrent;
         
         /// <summary>
-        /// cmdView control.
+        /// txtNew control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdView;
+        protected global::System.Web.UI.WebControls.TextBox txtNew;
         
         /// <summary>
-        /// ph_List control.
+        /// txtRepeat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder ph_List;
+        protected global::System.Web.UI.WebControls.TextBox txtRepeat;
+        
+        /// <summary>
+        /// cmdCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cmdCancel;
+        
+        /// <summary>
+        /// cmdApply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cmdApply;
+        
+        /// <summary>
+        /// spanMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanMessage;
     }
 }
