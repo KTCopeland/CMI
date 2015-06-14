@@ -79,7 +79,7 @@ namespace CareerCenter
                 {
                     //User Found.  Encrypt to see if the hashes match
                     string ls_Hash = lo_Check.Tables[0].Rows[0]["appuser_hash"].ToString();
-                    string ls_Salt = lo_Check.Tables[0].Rows[0]["appuser_hash"].ToString();
+                    string ls_Salt = lo_Check.Tables[0].Rows[0]["appuser_salt"].ToString();
 
                     if (ls_Hash == EncodePassword(as_Password, ls_Salt))
                     {
@@ -165,18 +165,18 @@ namespace CareerCenter
             // Response is a byte array too, so convert to string before returning value.
 
             Byte[] lbt_OriginalBytes;
-            Byte[] lbt_EncodedBytes;
             Byte[] lbt_SaltBytes;
+            Byte[] lbt_EncodedBytes;
 
             // Convert the original password to bytes; then create the hash
-            lbt_OriginalBytes = ASCIIEncoding.Default.GetBytes(as_Password);
-            lbt_SaltBytes = ASCIIEncoding.Default.GetBytes(as_Password);
+            lbt_SaltBytes = ASCIIEncoding.Default.GetBytes(as_Salt);
+            lbt_OriginalBytes = ASCIIEncoding.Default.GetBytes(as_Password+as_Salt);
             HMACMD5 lo_Crypto = new HMACMD5(lbt_SaltBytes);
             lbt_EncodedBytes = lo_Crypto.ComputeHash(lbt_OriginalBytes);
 
 
             // Return after converting bytes to string
-            return System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(lbt_EncodedBytes), "-", "").ToLower();
+            return Convert.ToBase64String(lbt_EncodedBytes).Replace("-","").Replace("'","a").Replace("==","x64").Replace("=","b").Replace("+","c").ToLower();
         }
 
         public static string Encode(string as_Input)

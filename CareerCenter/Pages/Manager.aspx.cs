@@ -39,8 +39,8 @@ namespace CareerCenter.Pages
 
         protected void cmdLogin_Click(object sender, EventArgs e)
         {
-            //KTC: Do this once to add users when there are none.
-            //Encryption.CreateUser(txtUser.Text, txtPassword.Text, "changethisemail@change.me", true);
+            //KTC: Do this once to add Administrator when there are no users.
+            //Encryption.CreateUser(txtUser.Text, txtPassword.Text, "please@change.me", true);
 
             string ls_Token = Encryption.ValidateUser(txtUser.Text,txtPassword.Text);
             if(ls_Token !="")
@@ -80,7 +80,14 @@ namespace CareerCenter.Pages
                     //Cool. We have a path that can be used to retrieve the file.  Excellent sign that all has gone well.
                     MailHandler lo_Mail = new MailHandler();
                     //Dang... Need to make a roundtrip to the database just to get the user's email address....  annoying :/
-                    lo_Mail.SendEmail("todd.copeland@experis.com", "CMI Extract: Jobs", "<html>Hi Todd,<br/>The data you requested is available here: <a href = '" + ls_File + "'>" + ls_File + "</a><br/> Thanks!</html>");
+                    string ls_SQL2 = "Select * from appuser where appuser_token='" + Session["Authentication"].ToString() + "'";
+                    DataSet lo_User = new DataSet();
+                    if (DataHandler.GetDatasetFromQuery(ref lo_User,ls_SQL2))
+                    {
+                        string ls_Email = lo_User.Tables[0].Rows[0]["appuser_email"].ToString();
+                        lo_Mail.SendEmail(ls_Email, "CMI Extract: Jobs", "<html>Report Completed<br/><br/>The data you requested is available here:<br/> <a href = '" + ls_File + "'>" + ls_File + "</a><br/> Thanks!</html>");
+                    }
+                    
                 }
 
 

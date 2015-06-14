@@ -43,6 +43,7 @@ namespace CareerCenter.Pages
                         txtEmail.Text = lo_data.Tables[0].Rows[0]["appuser_email"].ToString();
                         lblLastLogin.Text = lo_data.Tables[0].Rows[0]["appuser_lastlogin"].ToString();
                         lblFails.Text = lo_data.Tables[0].Rows[0]["appuser_fails"].ToString();
+                        hfX.Value = lo_data.Tables[0].Rows[0]["appuser_salt"].ToString();
                         chkAvailable.Checked = (lo_data.Tables[0].Rows[0]["appuser_available"].ToString().ToUpper() == "TRUE");
 
                         cmdReset.Enabled = true;
@@ -119,10 +120,25 @@ namespace CareerCenter.Pages
 
         protected void cmdReset_Click(object sender, EventArgs e)
         {
-            //1) Generate temporary password
-            //2) Update user record
-            //3) Send email to user to let them know
-
+            try
+            {
+                //1) Generate temporary password
+                string ls_Password = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8);
+                //2) Get hash for new password
+                string ls_Hash = Encryption.EncodePassword(ls_Password, hfX.Value);
+                //3) Update user record
+                string ls_SQL = "Update appuser set appuser_hash='" + ls_Hash + "', appuser_fails=0, appuser_available =1 where appuser_name='" + txtName.Text + "'";
+                SqlCommand lo_Command = new SqlCommand();
+                DataHandler.InitializeCommandFromQuery(ref lo_Command, ls_SQL);
+                lo_Command.ExecuteNonQuery();
+                //4) Send email to user to let them know
+                MailHandler lo_Mail = new MailHandler();
+                lo_Mail.SendEmail(txtEmail.Text, "CMI Account Reset", @"<html>Your password has been reset.<br/><br/>Please log in using the following credentials and then change your password immediately:<br/><br/>User Name: " + txtName.Text + "<br/>Temporary Password: " + ls_Password + "<br/><a href = 'http://app.contentmarketinginstitute.careers'>Link to Site</a><br/><br/>If you did not request a password reset or are unable to log in with these credentials, please contact your administrator immediately.<br/> Thanks!</html>");
+            }
+            catch (Exception ex)
+            {
+                DataHandler.HandleError(ex);
+            }
 
         }
     }

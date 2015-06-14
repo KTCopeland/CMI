@@ -41,6 +41,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:HiddenField ID="hfX" runat="server" />
         <table>
             <tr>
                 <td>
