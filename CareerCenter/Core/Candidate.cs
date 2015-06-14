@@ -431,7 +431,7 @@ namespace CareerCenter
             }
             catch (Exception ex)
             {
-
+                DataHandler.HandleError(ex);
                 lb_Return = false;
             }
 
