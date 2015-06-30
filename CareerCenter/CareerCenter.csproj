@@ -316,6 +316,35 @@
     <Content Include="js\ga.js" />
     <Content Include="js\jquery-ui-1.10.3.js" />
     <Content Include="js\jquery-ui-1.10.3.min.js" />
+    <Content Include="Land\adobe-connect-webinars_grey1.png" />
+    <Content Include="Land\cmi-career-center-logo.png" />
+    <Content Include="Land\cmi-logo.png" />
+    <Content Include="Land\contently2.png" />
+    <Content Include="Land\curata1.png" />
+    <Content Include="Land\demandmedia_benefactor2.png" />
+    <Content Include="Land\experis-logo.png" />
+    <Content Include="Land\favicon.ico" />
+    <Content Include="Land\favicon_001.ico" />
+    <Content Include="Land\footer-bg.png" />
+    <Content Include="Land\footer-logo.png" />
+    <Content Include="Land\foundation-icons.svg" />
+    <Content Include="Land\genericons.svg" />
+    <Content Include="Land\header.png" />
+    <Content Include="Land\icons.png" />
+    <Content Include="Land\inc500.png" />
+    <Content Include="Land\instagram-icon.png" />
+    <Content Include="Land\Job.aspx" />
+    <Content Include="Land\land.css" />
+    <Content Include="Land\knowledgevision1.png" />
+    <Content Include="Land\logo-icons.png" />
+    <Content Include="Land\newscred_benefactor1.png" />
+    <Content Include="Land\openview1.png" />
+    <Content Include="Land\prnewswire_benefactor1.png" />
+    <Content Include="Land\search-icon.png" />
+    <Content Include="Land\searchicon.png" />
+    <Content Include="Land\texture.png" />
+    <Content Include="Land\wrights1.png" />
+    <Content Include="Land\zemanta1.png" />
     <Content Include="Pages\CandidateManager.aspx" />
     <Content Include="Pages\ChangePassword.aspx" />
     <Content Include="Pages\EditJob.aspx" />
@@ -365,6 +394,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Land\Job.aspx.cs">
+      <DependentUpon>Job.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Land\Job.aspx.designer.cs">
+      <DependentUpon>Job.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Land\Land.Master.cs">
+      <DependentUpon>Land.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Land\Land.Master.designer.cs">
+      <DependentUpon>Land.Master</DependentUpon>
     </Compile>
     <Compile Include="Pages\CandidateManager.aspx.cs">
       <DependentUpon>CandidateManager.aspx</DependentUpon>
@@ -503,6 +546,16 @@
     <Content Include="Fonts\SourceSansPro-Regular.ttf" />
     <Content Include="Fonts\SourceSansPro-Semibold.ttf" />
     <Content Include="Fonts\SourceSansPro-SemiboldItalic.ttf" />
+    <Content Include="Land\foundation-icons.eot" />
+    <Content Include="Land\foundation-icons.ttf" />
+    <Content Include="Land\foundation-icons.woff" />
+    <Content Include="Land\genericons.eot" />
+    <Content Include="Land\genericons.ttf" />
+    <Content Include="Land\sourcesanspro-bold.ttf" />
+    <Content Include="Land\sourcesanspro-light.ttf" />
+    <Content Include="Land\sourcesanspro-regular.ttf" />
+    <Content Include="Land\sourcesanspro-semibold.ttf" />
+    <Content Include="Land\Land.Master" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

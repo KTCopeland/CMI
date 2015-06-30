@@ -27,7 +27,7 @@ namespace CareerCenter
         bool LoadJobs()
         {
             io_Jobs = new DataSet();
-            return DataHandler.GetDatasetFromQuery(ref io_Jobs,"Select *, -1 distance from vw_job_active");
+            return DataHandler.GetDatasetFromQuery(ref io_Jobs,"Select *, -1 distance from vw_job_active order by job_id desc");
         }
 
         bool LoadJobs(string as_PostalCode)
