@@ -177,7 +177,7 @@ namespace CareerCenter
                     {
                         //No longer merely sending users to the job search page.  We can send them to the landing page for a specific job now.
                         //lsb_Return.Append("<li><a class='learnMore' href='" + @"http://contentmarketinginstitute.careers/find-a-job/'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
-                        lsb_Return.Append("<li><a class='learnMore' href='" + @"/job_" + lo_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "' target='_parent'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
+                        lsb_Return.Append("<li><a class='learnMore' href='" + @"http://app.contentmarketinginstitute.careers/job_" + lo_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "' target='_parent'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
                     }
 
                 }
