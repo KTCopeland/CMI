@@ -86,7 +86,7 @@ namespace CareerCenter
                             lsb_JobSummary.Clear();
                             lsb_JobSummary.Append("<div id='SummaryWrapper_" + li_Counter.ToString() + "' class ='SummaryWrapper'>");
                             lsb_JobSummary.Append("<hr/>");
-                            lsb_JobSummary.Append("<div class ='jobTitle' ><a href='" + @"/pages/ShowJob.aspx?id=" + io_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() +"'>" + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString()) + "</a></div>");
+                            lsb_JobSummary.Append("<div class ='jobTitle' ><a href='" + @"/job_" + io_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() +"' target ='_parent'>" + WebUtility.HtmlEncode(io_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString()) + "</a></div>");
                             //KTC: 06/02/2015: Add indicator to show job term.  Valid values are {C,T,H} for {Contract, Contract to Hire, and Direct Hire} respectively
                             switch (io_Jobs.Tables[0].Rows[li_Loop]["job_term"].ToString().ToUpper())
                             {
@@ -175,9 +175,9 @@ namespace CareerCenter
                 {
                     for (int li_Loop = 0; li_Loop < lo_Jobs.Tables[0].Rows.Count; li_Loop++)
                     {
-                        //For now, we will send users to the same place every time: http://contentmarketinginstitute.careers/find-a-job/
-                        lsb_Return.Append("<li><a class='learnMore' href='" + @"http://contentmarketinginstitute.careers/find-a-job/'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
-                        //lsb_Return.Append("<li><a class='learnMore' href='" + @"/pages/ShowJob.aspx?id=" + lo_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
+                        //No longer merely sending users to the job search page.  We can send them to the landing page for a specific job now.
+                        //lsb_Return.Append("<li><a class='learnMore' href='" + @"http://contentmarketinginstitute.careers/find-a-job/'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
+                        lsb_Return.Append("<li><a class='learnMore' href='" + @"/job_" + lo_Jobs.Tables[0].Rows[li_Loop]["job_id"].ToString() + "' target='_parent'>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_title"].ToString() + "</a><br/>" + lo_Jobs.Tables[0].Rows[li_Loop]["job_city"].ToString() + ", " + lo_Jobs.Tables[0].Rows[li_Loop]["job_territory"].ToString() + "</li>");
                     }
 
                 }
