@@ -24,6 +24,7 @@ namespace CareerCenter.Pages
                JobSeeker lo_Control = (JobSeeker)Page.LoadControl("~/Controls/JobSeeker.ascx");
                lo_Control.Job_Id = li_Job;
                lo_Control.Source = "CMI";
+
                ph_Right.Controls.Add(lo_Control);
             }
             catch (Exception ex)

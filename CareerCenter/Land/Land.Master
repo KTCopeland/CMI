@@ -4,15 +4,13 @@
 <html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml" class="">
 <head profile="http://gmpg.org/xfn/11">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-    <title>CareerCenter – Powered by Experis</title>
-    <meta name="description" content="Powered by Experis" />
+    <asp:ContentPlaceHolder ID="HeaderInformation" runat="server"></asp:ContentPlaceHolder>
     <meta name="robots" content="noodp,noydir" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="alternate" type="application/rss+xml" title="CareerCenter » Feed" href="http://contentmarketinginstitute.careers/feed/" />
+<%--    <link rel="alternate" type="application/rss+xml" title="CareerCenter » Feed" href="http://contentmarketinginstitute.careers/feed/" />
     <link rel="alternate" type="application/rss+xml" title="CareerCenter » Comments Feed" href="http://contentmarketinginstitute.careers/comments/feed/" />
     <link rel="canonical" href="http://contentmarketinginstitute.careers/" />
-    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://contentmarketinginstitute.careers/xmlrpc.php?rsd" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://contentmarketinginstitute.careers/xmlrpc.php?rsd" />--%>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
     <!--[if gte IE 9]>
     <style type="text/css">

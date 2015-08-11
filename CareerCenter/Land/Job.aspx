@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Land/Land.Master" AutoEventWireup="true" CodeBehind="Job.aspx.cs" Inherits="CareerCenter.Land.Job" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="LandingContent" runat="server">
+<asp:Content ID="Content_Header" ContentPlaceHolderID="HeaderInformation" runat="server">
+    <asp:PlaceHolder ID="ph_Header" runat="server"></asp:PlaceHolder>
+</asp:Content>
+<asp:Content ID="Content_Landing" ContentPlaceHolderID="LandingContent" runat="server">
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55920cfd00b77975" async="async"></script>
 
     <script type="text/javascript">
