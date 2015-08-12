@@ -22,7 +22,7 @@
     <br />
         <div class="rightColumn">
             <span class='applyHeader'>APPLY NOW</span><br />
-            <p class='applyText'>It's free for job seekers and 100% confidential.  We will contact you before submitting you for a job.</p>
+            <%--<p class='applyText'>It's free for job seekers and 100% confidential.  We will contact you before submitting you for a job.</p>--%>
             <asp:PlaceHolder ID="ph_Right" runat="server"></asp:PlaceHolder>
             <br />
         </div>
